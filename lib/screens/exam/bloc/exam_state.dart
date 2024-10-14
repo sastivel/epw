@@ -1,3 +1,4 @@
+
 import '../../../api/base_equatable.dart';
 
 class ExamScreenState extends BaseEquatable {}

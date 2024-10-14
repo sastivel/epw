@@ -28,7 +28,7 @@ class HomeScreen extends BaseHookWidget {
 
   @override
   Widget build(BuildContext context) {
-    homeScreenBloc = useBloc<HomeScreenBloc>(closeOnDispose: true);
+    homeScreenBloc = useBloc<HomeScreenBloc>(closeOnDispose: false);
     loginScreenBloc = useBloc<LoginScreenBloc>(closeOnDispose: false);
     final state = useBlocBuilder(
       homeScreenBloc!,
@@ -59,7 +59,10 @@ class HomeScreen extends BaseHookWidget {
 
   bodyWidget(BuildContext context, state) {
     return state is HomeScreenLoadingState
-        ? CircularProgressIndicator()
+        ? Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Center(child: CircularProgressIndicator()))
         : Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,7 +152,7 @@ class HomeScreen extends BaseHookWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => MatrialScreen()));
+                                  builder: (context) => MaterialScreen()));
                         },
                         child: MyHomeScreenWidgets.cardWithImage(context, true,
                             ImageResource.STUDYMAT, StringResource.STUDYMAT),

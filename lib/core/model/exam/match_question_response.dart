@@ -13,17 +13,17 @@ class MatchQuestionResponse {
     if (json['question'] != null) {
       question = <Question>[];
       json['question'].forEach((v) {
-        question!.add(new Question.fromJson(v));
+        question!.add(Question.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['msg'] = this.msg;
-    if (this.question != null) {
-      data['question'] = this.question!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['msg'] = msg;
+    if (question != null) {
+      data['question'] = question!.map((v) => v.toJson()).toList();
     }
     return data;
   }

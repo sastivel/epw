@@ -13,17 +13,17 @@ class StudentResponse {
     if (json['students'] != null) {
       students = <Student>[];
       json['students'].forEach((v) {
-        students!.add(new Student.fromJson(v));
+        students!.add(Student.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['msg'] = this.msg;
-    if (this.students != null) {
-      data['students'] = this.students!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['msg'] = msg;
+    if (students != null) {
+      data['students'] = students!.map((v) => v.toJson()).toList();
     }
     return data;
   }

@@ -10,15 +10,15 @@ class RegisterResponseModel {
 	RegisterResponseModel.fromJson(Map<String, dynamic> json) {
 		success = json['success'];
 		msg = json['msg'];
-		student = json['student'] != null ? new Student.fromJson(json['student']) : null;
+		student = json['student'] != null ? Student.fromJson(json['student']) : null;
 	}
 
 	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['success'] = this.success;
-		data['msg'] = this.msg;
-		if (this.student != null) {
-      data['student'] = this.student!.toJson();
+		final Map<String, dynamic> data = Map<String, dynamic>();
+		data['success'] = success;
+		data['msg'] = msg;
+		if (student != null) {
+      data['student'] = student!.toJson();
     }
 		return data;
 	}

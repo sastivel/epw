@@ -1,5 +1,4 @@
 import 'package:EPW_mobile/screens/exam/usecase/get_exam_id_usecase.dart';
-import 'package:EPW_mobile/screens/login/usecase/login_usecase.dart';
 import '../../../api/interface/login/login_response.dart';
 import '../../../core/preference/app_preference.dart';
 import '../../../utils/common_imports.dart';
@@ -16,6 +15,7 @@ class ExamScreenBloc extends Bloc<ExamScreenEvent, ExamScreenState> {
   late BuildContext context;
   bool? languageValue;
    int? examId;
+   String? diaAbilityType;
  
 
   ExamScreenBloc({required this.examIdUseCase, required this.appPreferences})
@@ -33,6 +33,8 @@ class ExamScreenBloc extends Bloc<ExamScreenEvent, ExamScreenState> {
     emit(ExamScreenLoadingState());
     languageValue = appPreferences.getLanguageCode();
     loginResponseModel = await appPreferences.getUser();
+    diaAbilityType = loginResponseModel != null && loginResponseModel!.student!=null
+        && loginResponseModel!.student!.disablityType != null ? loginResponseModel!.student!.disablityType : null;
     emit(ExamScreenLoadingCompletedState());
   }
 

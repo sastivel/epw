@@ -34,7 +34,6 @@ class ScoreCardScreen extends BaseHookWidget {
     //_player.setUrl();
     _player.play();
 
-    print("reloadingggg");
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -83,9 +82,15 @@ class ScoreCardScreen extends BaseHookWidget {
                                   top: MediaQuery.of(context).size.width / 3.4,
                                   left: 20,
                                   bottom: 10),
-                              child: Text(
+                              child: scorecardScreenBloc?.diaAbilityType != null && scorecardScreenBloc?.diaAbilityType == 'Mild Intellectual Disability' ? Text(
+                                '${scorecardScreenBloc?.answerCount}/25',
+                                style: const TextStyle(
+                                    fontSize: 24,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ) : Text(
                                 '${scorecardScreenBloc?.answerCount}/60',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 24,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold),

@@ -41,6 +41,7 @@ class QuestionsScreenBloc
   List<String?> matchAnswer = [];
   List<String?> matchOptions = [];
   List<int?> matchQuestionIds = [];
+  String? disAbilityType;
 
   QuestionsScreenBloc(
       {required this.getQuestionUseCase,
@@ -71,6 +72,8 @@ class QuestionsScreenBloc
     clear();
     languageValue = appPreferences.getLanguageCode();
     loginResponseModel = await appPreferences.getUser();
+    disAbilityType = loginResponseModel != null && loginResponseModel!.student!=null
+        && loginResponseModel!.student!.disablityType != null ? loginResponseModel!.student!.disablityType : null;
 
     final response = await getQuestionUseCase.call(
         params: GetQuestionParams(examId: event.examId!));

@@ -16,6 +16,7 @@ class ScorecardScreenBloc extends Bloc<ScorecardScreenEvent, ScorecardScreenStat
   late BuildContext context;
   bool? languageValue;
   int? answerCount;
+  String? diaAbilityType;
 
 
   ScorecardScreenBloc({required this.getScoreCardUseCase, required this.appPreferences})
@@ -30,6 +31,11 @@ class ScorecardScreenBloc extends Bloc<ScorecardScreenEvent, ScorecardScreenStat
     ScorecardScreenInitialEvent event,
     Emitter<ScorecardScreenState> emit,
   ) async {
+
+    loginResponseModel = await appPreferences.getUser();
+    diaAbilityType = loginResponseModel != null && loginResponseModel!.student!=null
+        && loginResponseModel!.student!.disablityType != null ? loginResponseModel!.student!.disablityType : null;
+
     emit(ScorecardScreenLoadingState());
      final response = await getScoreCardUseCase.call(
         params:  GetScoreCardParams(examId: event.examId));

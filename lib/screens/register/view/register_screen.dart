@@ -78,11 +78,8 @@ class RegisterScreen extends BaseHookWidget {
 
                   Container(
                     margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.3),
-                    child: Align(
-                      alignment: AlignmentDirectional.center,
-                      child: bodyWidget(state, context),
-                    ),
+                        top: MediaQuery.of(context).size.height / 2.8),
+                    child: bodyWidget(state, context),
                   ),
                 ],
               ),
@@ -93,38 +90,42 @@ class RegisterScreen extends BaseHookWidget {
     if (state is RegisterScreenLoadingState) {
       return const Center(child: CircularProgressIndicator());
     } else {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          RegisterScreenWidgets.nameTxtBox(context, registerScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          RegisterScreenWidgets.classDropDown(context, registerScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          RegisterScreenWidgets.disablityStatusDropDown(
-              context, registerScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          if (registerScreenBloc!.isChildDisablity != null &&
-              registerScreenBloc!.isChildDisablity == "Yes")
-            RegisterScreenWidgets.disablityDropDown(
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            RegisterScreenWidgets.nameTxtBox(context, registerScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            RegisterScreenWidgets.classDropDown(context, registerScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            RegisterScreenWidgets.disablityStatusDropDown(
                 context, registerScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          state is RegisterScreenLoadingState
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : RegisterScreenWidgets.registerbtn(context, registerScreenBloc!),
-          const SizedBox(
-            height: 15,
-          ),
-        ],
+            const SizedBox(
+              height: 25,
+            ),
+            if (registerScreenBloc!.isChildDisablity != null &&
+                registerScreenBloc!.isChildDisablity == "Yes")
+              RegisterScreenWidgets.disablityDropDown(
+                  context, registerScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            state is RegisterScreenLoadingState
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : RegisterScreenWidgets.registerbtn(context, registerScreenBloc!),
+            const SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
       );
     }
   }

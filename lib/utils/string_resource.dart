@@ -91,4 +91,8 @@ class StringResource {
   static const String choose4 = "choose4";
   static const String choose5 = "choose5";
   static const String choose6 = "choose6";
+
+  static const String choose7 = "choose7";
+  static const String choose8 = "choose8";
+  static const String choose9 = "choose9";
 }

@@ -1,37 +1,45 @@
-import 'package:EPW_mobile/screens/base/state/base_hook_consumer_widget.dart';
 import 'package:EPW_mobile/screens/materials/view/material_detail_screen.dart';
 import 'package:EPW_mobile/utils/color_resource.dart';
-import 'package:EPW_mobile/utils/common_imports.dart';
-import 'package:EPW_mobile/utils/image_resource.dart';
-import 'package:EPW_mobile/utils/material_details.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:gif_view/gif_view.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:flutter/services.dart';
+import 'package:EPW_mobile/utils/material_details.dart';
 
-// ignore: must_be_immutable
-class MatrialScreen extends StatelessWidget {
-  MatrialScreen({super.key});
+class MaterialScreen extends StatefulWidget {
+  @override
+  _MaterialScreenState createState() => _MaterialScreenState();
+}
 
-  List<dynamic> materialList = [
-    {"image": ImageResource.INTRO_IMAGE},
-    {"image": ImageResource.ALAGE_IMAGE},
-    {"image": ImageResource.FUNGI_IMAGE},
-    {"image": ImageResource.BYRO_IMAGE},
-    {"image": ImageResource.PTER_IMAGE},
-    {"image": ImageResource.GYMNO_IMAGE},
-    {"image": ImageResource.ANGIO_IMAGE},
-    {"image": ImageResource.FLOWCHART_IMAGE},
-  ];
-  var MaterialDetailsss = MaterialDetails().materialList1;
-  // final AudioPlayer _player = AudioPlayer();
-  late AudioPlayer player = AudioPlayer();
+class _MaterialScreenState extends State<MaterialScreen> {
+  final List<dynamic> materialList = MaterialDetails().materialList1; // Cached MaterialDetails
+  late AudioPlayer _player;
+
+  @override
+  void initState() {
+    super.initState();
+    _player = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    _player.dispose(); // Dispose AudioPlayer to avoid memory leaks
+    super.dispose();
+  }
+
+  Future<void> _playSound() async {
+    try {
+      await _player.setAsset('assets/images/mouse_click.mp3');
+      _player.play();
+    } catch (e) {
+      print("Error loading audio: $e");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    // _player.setLoopMode(LoopMode.off);
-    // _player.setAsset("assets/images/mouse_click.mp3");
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: ColorResource.COLOR_APP_TEXT_FIELD_BORDER,
@@ -40,86 +48,90 @@ class MatrialScreen extends StatelessWidget {
           style: const TextStyle(color: ColorResource.WHITEE5E5E5),
         ),
       ),
-      body: Container(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         child: GridView.builder(
-          shrinkWrap: true,
-          padding: const EdgeInsets.symmetric(horizontal: 12),
           itemCount: materialList.length,
           itemBuilder: (ctx, i) {
-            return InkWell(
-              onTap: () async {
-                SystemSound.play(SystemSoundType.click);
-                //  _player.play();
-                await player.setAsset('assets/images/mouse_click.mp3');
-                player.play();
-
-                Future.delayed(const Duration(milliseconds: 500), () {
-// Here you can write your code
-
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MaterialDetailScreen(
-                              i, MaterialDetails().materialList1[i])));
-                });
-                ;
-                // _player.dispose();
-              },
-              child: Card(
-                child: Stack(
-                  children: [
-                    Container(
-                        height: 290,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        margin: const EdgeInsets.all(5),
-                        padding: const EdgeInsets.all(5),
-                        child: GifView.asset(
-                          MaterialDetails().materialList1[i]['image'],
-
-                          frameRate: 30, // default is 15 FPS
-                        )
-                        // Image.asset(
-                        //   MaterialDetails().materialList1[i]['image'],
-                        //   fit: BoxFit.fill,
-                        // ),
-                        ),
-                    Positioned(
-                        bottom: 0,
-                        child: Container(
-                          height: 40,
-                          width: 175,
-                          color: Colors.black.withOpacity(0.4),
-                          child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                            MaterialDetails().materialList1[i]['name'],
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w900,
-                                    color: ColorResource.WHITEFFFFFF),
-                          ),
-                          SizedBox(width: 10,),
-                          Icon(Icons.forward,color: Colors.white,)
-                                ],
-                              )),
-                        ))
-                  ],
-                ),
-              ),
-            );
+            return _buildMaterialCard(context, i);
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.0,
-            crossAxisSpacing: 0.0,
-            mainAxisSpacing: 5,
+            crossAxisSpacing: 10.0,
+            mainAxisSpacing: 10,
             mainAxisExtent: 264,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildMaterialCard(BuildContext context, int index) {
+    final material = materialList[index]; // Access material only once
+    return InkWell(
+      onTap: () async {
+        SystemSound.play(SystemSoundType.click);
+        await _playSound(); // Play sound on tap
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MaterialDetailScreen(index, material),
+          ),
+        );
+      },
+      child: Card(
+        child: Stack(
+          children: [
+            Container(
+             // height: MediaQuery.of(context).size.height/3,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(5),
+              child: GifView.asset(
+                material['image'], // Load the GIF from asset
+                frameRate: 30,
+              ),
+            ),
+            _buildMaterialNameOverlay(material['name']),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMaterialNameOverlay(String name) {
+    return Positioned(
+      bottom: 0,
+      child: Column(
+        children: [
+          Container(
+          //  height: 50,
+            width: MediaQuery.of(context).size.width/2.06,
+            color: Colors.black.withOpacity(0.4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  name,
+                  textAlign: TextAlign.start,
+                  maxLines: 2,
+                  style: const TextStyle(
+                    fontSize: 18,
+
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.w900,
+                    color: ColorResource.WHITEFFFFFF,
+                  ),
+                ),
+              //    const SizedBox(width: 10),
+                // Icon(Icons.forward, color: Colors.white),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 import '../../../core/model/login/student_model.dart';
 import '../../../core/model/login/user_model.dart';
 
@@ -14,20 +16,20 @@ class LoginResponseModel {
 		success = json['success'];
 		msg = json['msg'];
 		token = json['token'];
-		user = json['user'] != null ? new User.fromJson(json['user']) : null;
-		student = json['student'] != null ? new Student.fromJson(json['student']) : null;
+		user = json['user'] != null ? User.fromJson(json['user']) : null;
+		student = json['student'] != null ? Student.fromJson(json['student']) : null;
 	}
 
 	Map<String, dynamic> toJson() {
-		final Map<String, dynamic> data = new Map<String, dynamic>();
-		data['success'] = this.success;
-		data['msg'] = this.msg;
-		data['token'] = this.token;
-		if (this.user != null) {
-      data['user'] = this.user!.toJson();
+		final Map<String, dynamic> data = Map<String, dynamic>();
+		data['success'] = success;
+		data['msg'] = msg;
+		data['token'] = token;
+		if (user != null) {
+      data['user'] = user!.toJson();
     }
-		if (this.student != null) {
-      data['student'] = this.student!.toJson();
+		if (student != null) {
+      data['student'] = student!.toJson();
     }
 		return data;
 	}

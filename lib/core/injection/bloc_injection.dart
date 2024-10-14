@@ -3,7 +3,6 @@
 import 'package:EPW_mobile/screens/exam/bloc/exam_bloc.dart';
 import 'package:EPW_mobile/screens/home/bloc/home_bloc.dart';
 import 'package:EPW_mobile/screens/profile/bloc/profile_bloc.dart';
-import 'package:EPW_mobile/screens/questions/usecase/get_question_response.dart';
 
 import '../../screens/login/bloc/login_bloc.dart';
 import '../../screens/questions/bloc/question_bloc.dart';

@@ -1,7 +1,6 @@
 import 'package:EPW_mobile/screens/exam/usecase/get_exam_id_usecase.dart';
 import 'package:EPW_mobile/screens/home/usecase/student_usecase.dart';
 import 'package:EPW_mobile/screens/profile/usecase/profile_usecase.dart';
-import 'package:EPW_mobile/screens/questions/bloc/question_event.dart';
 import 'package:EPW_mobile/screens/questions/usecase/get_match_question_response.dart';
 import 'package:EPW_mobile/screens/questions/usecase/get_question_response.dart';
 import 'package:EPW_mobile/screens/questions/usecase/post_answer_usecase.dart';

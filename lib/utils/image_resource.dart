@@ -130,4 +130,20 @@ class ImageResource {
       "assets/images/congrats_scoreboard.svg";
   static const String IMAGE_SCORE_CARD_PNG =
       "assets/images/congrats_scoreboard.png";
+
+
+  static const String INTRO_VIDEO_TAMIL = "https://epw.nex99.com/tamil/intro.mp4";
+  static const String INTRO_VIDEO_ENGLISH = "https://epw.nex99.com/english/intro.mp4";
+  static const String ALGAE_VIDEO_TAMIL = "https://epw.nex99.com/tamil/algae.mp4";
+  static const String ALGAE_VIDEO_ENGLISH = "https://epw.nex99.com/english/algae.mp4";
+  static const String FUNGI_VIDEO_TAMIL = "https://epw.nex99.com/tamil/fungi.mp4";
+  static const String FUNGI_VIDEO_ENGLISH = "https://epw.nex99.com/english/fungi.mp4";
+  static const String BRYO_VIDEO_TAMIL = "https://epw.nex99.com/tamil/bryophytes.mp4";
+  static const String BRYO_VIDEO_ENGLISH = "https://epw.nex99.com/english/bryophytes.mp4";
+  static const String PTER_VIDEO_TAMIL = "https://epw.nex99.com/tamil/pteridophytes.mp4";
+  static const String PTER_VIDEO_ENGLISH = "https://epw.nex99.com/english/pteridophytes.mp4";
+  static const String GYMNO_VIDEO_TAMIL = "https://epw.nex99.com/tamil/gymnosperms.mp4";
+  static const String GYMNO_VIDEO_ENGLISH = "https://epw.nex99.com/english/gymnosperms.mp4";
+  static const String ANGIO_VIDEO_TAMIL = "https://epw.nex99.com/tamil/angiosperms.mp4";
+  static const String ANGIO_VIDEO_ENGLISH = "https://epw.nex99.com/english/angiosperms.mp4";
 }

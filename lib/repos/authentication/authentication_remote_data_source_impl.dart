@@ -50,7 +50,7 @@ class AuthendicationRemoteDataSourceImpl
       final LoginResponseModel loginResponse =
           LoginResponseModel.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${loginResponse.toJson()}');
-      if (loginResponse?.success == 0) {
+      if (loginResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(loginResponse);

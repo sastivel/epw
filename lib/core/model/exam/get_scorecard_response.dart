@@ -11,16 +11,16 @@ class GetScroreCardResponse {
     success = json['success'];
     msg = json['msg'];
     scorecard = json['scorecard'] != null
-        ? new Scorecard.fromJson(json['scorecard'])
+        ? Scorecard.fromJson(json['scorecard'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['msg'] = this.msg;
-    if (this.scorecard != null) {
-      data['scorecard'] = this.scorecard!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['msg'] = msg;
+    if (scorecard != null) {
+      data['scorecard'] = scorecard!.toJson();
     }
     return data;
   }

@@ -2,7 +2,6 @@ import 'package:EPW_mobile/screens/home/screens/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
@@ -94,11 +93,8 @@ class ProfileScreen extends BaseHookWidget {
 
                   Container(
                     margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.3),
-                    child: Align(
-                      alignment: AlignmentDirectional.center,
-                      child: bodyWidget(state, context),
-                    ),
+                        top: MediaQuery.of(context).size.height / 2.8),
+                    child: bodyWidget(state, context),
                   ),
                 ],
               ),
@@ -109,38 +105,42 @@ class ProfileScreen extends BaseHookWidget {
     if (state is ProfileScreenLoadingState) {
       return const Center(child: CircularProgressIndicator());
     } else {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ProfileScreenWidgets.nameTxtBox(context, profileScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          ProfileScreenWidgets.classDropDown(context, profileScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          ProfileScreenWidgets.disablityTypeStatusDropDown(
-              context, profileScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          if (profileScreenBloc!.isChildDisablity != null &&
-              profileScreenBloc!.isChildDisablity == "Yes")
-            ProfileScreenWidgets.disablityTypeDropDown(
+      return Container(
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ProfileScreenWidgets.nameTxtBox(context, profileScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            ProfileScreenWidgets.classDropDown(context, profileScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            ProfileScreenWidgets.disablityTypeStatusDropDown(
                 context, profileScreenBloc!),
-          const SizedBox(
-            height: 25,
-          ),
-          state is ProfileScreenLoadingState
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : ProfileScreenWidgets.Profilebtn(context, profileScreenBloc!),
-          const SizedBox(
-            height: 15,
-          ),
-        ],
+            const SizedBox(
+              height: 25,
+            ),
+            if (profileScreenBloc!.isChildDisablity != null &&
+                profileScreenBloc!.isChildDisablity == "Yes")
+              ProfileScreenWidgets.disablityTypeDropDown(
+                  context, profileScreenBloc!),
+            const SizedBox(
+              height: 25,
+            ),
+            state is ProfileScreenLoadingState
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ProfileScreenWidgets.Profilebtn(context, profileScreenBloc!),
+            const SizedBox(
+              height: 15,
+            ),
+          ],
+        ),
       );
     }
   }

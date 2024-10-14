@@ -46,84 +46,153 @@ class ExamScreen extends BaseHookWidget {
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
-            body: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    image: ExactAssetImage(ImageResource.APPBG4),
-                    fit: BoxFit.fill,
-                    alignment: Alignment.topCenter,
-                  ),
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 90,
-                    ),
-                    Text(
-                      StringResource.choose1.tr(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      StringResource.choose2.tr(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      StringResource.choose3.tr(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      StringResource.choose4.tr(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    Text(
-                      StringResource.choose5.tr(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.center,
-                    ),
-                    Spacer(),
-                    Container(
-                        margin: EdgeInsets.only(
-                            bottom: MediaQuery.of(context).size.width / 3.5),
-                        child: state is ExamScreenLoadingState
-                            ? const Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : ExamWidgets.StartExamBtn(
-                                context, examScreenBloc!))
-                  ],
-                ))));
+            body: state is ExamScreenLoadingState
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : examScreenBloc!.diaAbilityType != null &&
+                        examScreenBloc!.diaAbilityType ==
+                            'Mild Intellectual Disability'
+                    ? Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: ExactAssetImage(ImageResource.APPBG4),
+                            fit: BoxFit.fill,
+                            alignment: Alignment.topCenter,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 90,
+                            ),
+                            Text(
+                              StringResource.choose7.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose8.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose9.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Spacer(),
+                            Container(
+                                margin: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).size.width /
+                                        3.5),
+                                child: state is ExamScreenLoadingState
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : ExamWidgets.StartExamBtn(
+                                        context, examScreenBloc!))
+                          ],
+                        ))
+                    : Container(
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: ExactAssetImage(ImageResource.APPBG4),
+                            fit: BoxFit.fill,
+                            alignment: Alignment.topCenter,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 90,
+                            ),
+                            Text(
+                              StringResource.choose1.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose2.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose3.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose4.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              StringResource.choose5.tr(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                              textAlign: TextAlign.center,
+                            ),
+                            Spacer(),
+                            Container(
+                                margin: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context).size.width /
+                                        3.5),
+                                child: state is ExamScreenLoadingState
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : ExamWidgets.StartExamBtn(
+                                        context, examScreenBloc!))
+                          ],
+                        ))));
   }
 }

@@ -55,7 +55,7 @@ dependencies:
   hooked_bloc: ^1.2.1
   flutter_web_frame: ^0.0.3
   google_fonts: ^4.0.4
-  intl: ^0.18.0
+  intl: ^0.19.0
   flutter_masked_text2: ^0.9.1
   image_picker: ^0.8.6
   flutter_image_slideshow: ^0.1.4
@@ -80,6 +80,9 @@ dependencies:
   flutter_svg: ^2.0.8
   just_audio: ^0.9.36
   gif_view: ^0.3.1
+  delete_un_used_assets: ^1.0.1
+  video_player: ^2.9.1
+  chewie: ^1.8.5
 
 
 dev_dependencies:
@@ -92,6 +95,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  dart_code_metrics: ^5.7.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -148,11 +148,6 @@ class DioHelper {
     //     fontSize: 14.0);
   }
 
-  _setupLogInterceptor() {
-    //if (DebugMode.isInDebugMode) {
-    // dio.interceptors.add(LogInterceptor(responseBody: false));
-    //}
-  }
 }
 
 //This transformer runs the json decoding in a background thread.

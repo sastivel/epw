@@ -25,7 +25,6 @@ class AppPreferences implements BasePreference {
     return _sharedPreferences.getString(PREF_USER_ID) ?? "";
   }
 
-  @override
   Future<LoginResponseModel?> getUser() async {
     String? value;
     value = _sharedPreferences.getString(PREF_USER);

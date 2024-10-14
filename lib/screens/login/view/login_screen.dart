@@ -34,7 +34,7 @@ class LoginScreen extends BaseHookWidget {
       }
       if (value is NavigateToHomeScreenState) {
         showToast(context: context, message: 'Logged in successfully');
-        homeScreenBloc?.add(HomeScreenInitialEvent());
+      //  homeScreenBloc?.add(HomeScreenInitialEvent());
         Future.delayed(const Duration(milliseconds: 200));
         pushReplacement(context, HomeScreen());
       }

@@ -5,7 +5,6 @@ import 'package:EPW_mobile/screens/profile/bloc/profile_state.dart';
 
 import '../../../core/preference/app_preference.dart';
 import '../../../utils/common_imports.dart';
-import '../../../utils/text_utils.dart';
 import '../../../utils/validator.dart';
 import '../usecase/profile_usecase.dart';
 
@@ -82,7 +81,8 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   Future<void> onProfileScreenDisablityStatusDropDownEvent(
       ProfileScreenDisablityStatusDropDownEvent event,
       Emitter<ProfileScreenState> emit) async {
-    isChildDisablity = event.selectedValue;
+    isChildDisablity = event.selectedValue != null && event.selectedValue != '' ? "Yes" : "No"  ;
+    selectedDisablityType = "Visual Impairment";
     emit(ProfileScreenLoadingCompletedState());
     return;
   }
@@ -109,7 +109,7 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
             id: loginResponseModel?.student?.id,
             name: nameTextController.text,
             className: selectedClassName!,
-            disablityType: selectedDisablityType == null ? selectedDisablityType : null));
+            disablityType: selectedDisablityType ?? null));
 
     response.fold(
         (l) => {emit(ProfileScreenErrorState(l.toString()))},

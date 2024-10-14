@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 import 'answer.dart';
 
 class AddAnswerResponse {
@@ -11,16 +13,16 @@ class AddAnswerResponse {
     success = json['success'];
     msg = json['msg'];
     studentResponse = json['student_response'] != null
-        ? new Answer.fromJson(json['student_response'])
+        ? Answer.fromJson(json['student_response'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['msg'] = this.msg;
-    if (this.studentResponse != null) {
-      data['student_response'] = this.studentResponse!.toJson();
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['msg'] = msg;
+    if (studentResponse != null) {
+      data['student_response'] = studentResponse!.toJson();
     }
     return data;
   }

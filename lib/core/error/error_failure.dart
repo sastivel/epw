@@ -75,7 +75,7 @@ class FormatExceptionFailure extends Failure {
 class LocalError extends Failure {
   final String? message;
 
-  LocalError({
+  const LocalError({
     this.message,
   });
 
@@ -89,7 +89,7 @@ class LocalError extends Failure {
 class ServerError extends Failure {
   final String? message;
 
-  ServerError({
+  const ServerError({
     this.message,
   });
 

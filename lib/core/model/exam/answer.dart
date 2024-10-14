@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_collection_literals
+
 class Answer {
   String? uuid;
   int? examId;
@@ -27,14 +29,15 @@ class Answer {
   }
 
   Map<String, dynamic> toJson() {
+    // ignore: unnecessary_new
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uuid'] = this.uuid;
-    data['exam_id'] = this.examId;
-    data['question_id'] = this.questionId;
-    data['correct_answer'] = this.correctAnswer;
-    data['updated_at'] = this.updatedAt;
-    data['created_at'] = this.createdAt;
-    data['id'] = this.id;
+    data['uuid'] = uuid;
+    data['exam_id'] = examId;
+    data['question_id'] = questionId;
+    data['correct_answer'] = correctAnswer;
+    data['updated_at'] = updatedAt;
+    data['created_at'] = createdAt;
+    data['id'] = id;
     return data;
   }
 }

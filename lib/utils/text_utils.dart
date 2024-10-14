@@ -66,7 +66,7 @@ class CustomTextFormField {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(top: 10),
+            margin: const EdgeInsets.only(top: 10),
             height: 100,
             child: TextFormField(
               autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -75,6 +75,7 @@ class CustomTextFormField {
                 if (validator != null) {
                   validator(value);
                 }
+                return null;
               },
               decoration: InputDecoration(
                 hintText: label,
@@ -90,7 +91,7 @@ class CustomTextFormField {
                   borderRadius: BorderRadius.circular(2.0),
                 ),
                 errorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  borderSide: const BorderSide(color: Colors.red, width: 1.0),
                   borderRadius: BorderRadius.circular(2.0),
                 ),
               ),
@@ -119,11 +120,11 @@ class TextFormFieldDecor {
         borderRadius: BorderRadius.circular(2.0),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 1.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
         borderRadius: BorderRadius.circular(2.0),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 1.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
         borderRadius: BorderRadius.circular(2.0),
       ),
     );
@@ -146,11 +147,11 @@ class TextFormFieldDecorWithSuffix {
         borderRadius: BorderRadius.circular(2.0),
       ),
       errorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 1.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
         borderRadius: BorderRadius.circular(2.0),
       ),
       focusedErrorBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 1.0),
+        borderSide: const BorderSide(color: Colors.red, width: 1.0),
         borderRadius: BorderRadius.circular(2.0),
       ),
     );

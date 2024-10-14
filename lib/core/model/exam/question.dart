@@ -42,19 +42,19 @@ class Question {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['uuid'] = this.uuid;
-    data['type'] = this.type;
-    data['question'] = this.question;
-    data['options'] = this.options;
-    data['answer'] = this.answer;
-    data['question_tamil'] = this.questionTamil;
-    data['options_tamil'] = this.optionsTamil;
-    data['answer_tamil'] = this.answerTamil;
-    data['status'] = this.status;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['id'] = id;
+    data['uuid'] = uuid;
+    data['type'] = type;
+    data['question'] = question;
+    data['options'] = options;
+    data['answer'] = answer;
+    data['question_tamil'] = questionTamil;
+    data['options_tamil'] = optionsTamil;
+    data['answer_tamil'] = answerTamil;
+    data['status'] = status;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

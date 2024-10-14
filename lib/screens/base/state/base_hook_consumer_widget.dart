@@ -7,7 +7,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 abstract class BaseHookWidget extends HookWidget {
   const BaseHookWidget({super.key});
-
+    
+    Widget build(BuildContext context) {
+      return Container();
+    }
+  
   showToast({required BuildContext context, required String message}) {
     return ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),

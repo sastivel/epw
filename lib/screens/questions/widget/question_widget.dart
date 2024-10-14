@@ -36,7 +36,11 @@ class QuestionWidgets {
     return InkWell(
       onTap: () {
         if (bloc.isLastQuestion == true) {
-          bloc.add(GetMatchQuestionEvent());
+          if(bloc.disAbilityType == 'Mild Intellectual Disability'){
+            bloc.add(MoveToScoreCardEvent());
+          }else {
+            bloc.add(GetMatchQuestionEvent());
+          }
         } else {
           bloc.add(QuestionsScreenInitialEvent(examId: bloc.examId));
         }

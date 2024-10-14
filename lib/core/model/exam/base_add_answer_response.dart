@@ -1,4 +1,5 @@
-import 'answer.dart';
+
+// ignore_for_file: prefer_collection_literals
 
 class BaseAddAnswerResponse {
   int? success;
@@ -14,9 +15,9 @@ class BaseAddAnswerResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['success'] = this.success;
-    data['msg'] = this.msg;
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['success'] = success;
+    data['msg'] = msg;
     return data;
   }
 }

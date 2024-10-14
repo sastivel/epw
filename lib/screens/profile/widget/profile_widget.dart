@@ -11,21 +11,21 @@ class ProfileScreenWidgets {
   static Widget nameTxtBox(BuildContext context, ProfileScreenBloc bloc) {
     return Container(
       // margin: const EdgeInsets.only(right: 20,left: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             StringResource.NAME.tr(),
             style: CustomStyle.size14w400CAPPTXTCOLOR(),
           ),
           const SizedBox(
-            width: 10,
+            height: 10,
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 1.6,
-            height: 30,
-            margin: const EdgeInsets.only(right: 20, left: 20),
+           // width: MediaQuery.of(context).size.width / 1.6,
+            height: 50,
+            margin: const EdgeInsets.only(right: 20),
             child: CustomTextField(
                 hint: StringResource.ENTRSTUDNAME.tr(),
                 inputType: TextInputType.text,
@@ -38,20 +38,20 @@ class ProfileScreenWidgets {
 
   static Widget classDropDown(BuildContext context, ProfileScreenBloc bloc) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             StringResource.CLASS.tr(),
             style: CustomStyle.size14w400CAPPTXTCOLOR(),
           ),
           const SizedBox(
-            width: 10,
+            height: 10,
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 1.6,
-            height: 30,
+            width: MediaQuery.of(context).size.width ,
+            height: 50,
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
@@ -86,20 +86,20 @@ class ProfileScreenWidgets {
   static Widget disablityTypeDropDown(
       BuildContext context, ProfileScreenBloc bloc) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             StringResource.DISBLITYTYPE.tr(),
             style: CustomStyle.size14w400CAPPTXTCOLOR(),
           ),
           const SizedBox(
-            width: 10,
+            height: 10,
           ),
-          Container(
-            width: MediaQuery.of(context).size.width / 1.6,
-            height: 30,
+             Container(
+            width: MediaQuery.of(context).size.width ,
+            height: 50,
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
@@ -130,6 +130,7 @@ class ProfileScreenWidgets {
               },
             ),
           )
+
         ],
       ),
     );
@@ -138,20 +139,20 @@ class ProfileScreenWidgets {
   static Widget disablityTypeStatusDropDown(
       BuildContext context, ProfileScreenBloc bloc) {
     return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             StringResource.DISBLITYTYPETRUEORFALSE.tr(),
             style: CustomStyle.size14w400CAPPTXTCOLOR(),
           ),
           const SizedBox(
-            width: 10,
+            height: 10,
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 1.6,
-            height: 30,
+            width: MediaQuery.of(context).size.width ,
+            height: 50,
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5.0),
@@ -184,24 +185,26 @@ class ProfileScreenWidgets {
   }
 
   static Widget Profilebtn(BuildContext context, ProfileScreenBloc bloc) {
-    return InkWell(
-      onTap: () {
-        bloc!.add(ProfileScreenProfileButtonClickEvent());
-        // Navigator.pushNamed(context, AppRoutes.homeScreen);
-      },
-      child: Container(
-          alignment: FractionalOffset.center,
-          height: 40,
-          width: 150,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: ColorResource.COLOR_APP_BTN),
-          padding:
-              const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
-          child: Text(
-            StringResource.SUBMIT.tr(),
-            style: CustomStyle.size14w500white(),
-          )),
+    return Center(
+      child: InkWell(
+        onTap: () {
+          bloc!.add(ProfileScreenProfileButtonClickEvent());
+          // Navigator.pushNamed(context, AppRoutes.homeScreen);
+        },
+        child: Container(
+            alignment: FractionalOffset.center,
+            height: 40,
+            width: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: ColorResource.COLOR_APP_BTN),
+            padding:
+                const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+            child: Text(
+              StringResource.SUBMIT.tr(),
+              style: CustomStyle.size14w500white(),
+            )),
+      ),
     );
   }
 }

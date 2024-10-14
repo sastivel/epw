@@ -35,16 +35,17 @@ class Student {
   }
 
   Map<String, dynamic> toJson() {
+    // ignore: unnecessary_new
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['uuid'] = this.uuid;
-    data['user_id'] = this.userId;
-    data['name'] = this.name;
-    data['class_name'] = this.className;
-    data['status'] = this.status;
-    data['disability_type'] = this.disablityType;
-    data['updated_at'] = this.updatedAt;
-    data['created_at'] = this.createdAt;
-    data['id'] = this.id;
+    data['uuid'] = uuid;
+    data['user_id'] = userId;
+    data['name'] = name;
+    data['class_name'] = className;
+    data['status'] = status;
+    data['disability_type'] = disablityType;
+    data['updated_at'] = updatedAt;
+    data['created_at'] = createdAt;
+    data['id'] = id;
     return data;
   }
 }

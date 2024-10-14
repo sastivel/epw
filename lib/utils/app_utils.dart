@@ -238,7 +238,7 @@ class AppUtils {
   }
 
   static String invalidErrorMsg({required String text}) {
-    return "${text} is invalid";
+    return "$text is invalid";
   }
 
   static DateTime getDateFrom(String dateStr, String format) {
