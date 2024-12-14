@@ -26,6 +26,18 @@ class ImageResource {
 
   static const String INTRO_IMAGE = "assets/images/intro_image.jpg";
 
+  static const String INTRO_MILD_AUDIO_TAMIL = "assets/images/mild_intro.mp3";
+
+  static const String INTRO_MILD_AUDIO_ENG = "assets/images/mild_eng_intro.mpeg";
+
+  static const String INTRO_MILD_DOC_TAMIL = "assets/images/mild_intro.pdf";
+
+  static const String INTRO_MILD_DOC_ENG = "assets/images/mild_eng_intro.pdf";
+
+  static const String INTRO_CLICK_AUDIO_TAMIL = "assets/images/introduction_tamil_click.mp3";
+
+  static const String INTRO_CLICK_AUDIO_ENG = "assets/images/introduction_click.mp3";
+
 //2
   static const String ALAGE_AUDIO_ENG = "assets/images/algae_audio_english.mp3";
 
@@ -36,7 +48,18 @@ class ImageResource {
   static const String ALAGE_DOC_TAMIL = "assets/images/algae_doc_tamil.pdf";
 
   static const String ALAGE_IMAGE = "assets/images/algae.gif";
-  //static const String ALAGE_IMAGE = "assets/images/alage_image.png";
+
+  static const String ALAGE_MILD_AUDIO_ENG = "assets/images/mild_eng_algae.mp3";
+
+  static const String ALAGE_MILD_AUDIO_TAMIL = "assets/images/mild_algae.mp3";
+
+  static const String ALAGE_MILD_DOC_ENG = "assets/images/mild_eng_algae.pdf";
+
+  static const String ALAGE_MILD_DOC_TAMIL = "assets/images/mild_algae.pdf";
+
+  static const String ALAGE_CLICK_AUDIO_TAMIL = "assets/images/algae_tamil_click.mp3";
+
+  static const String ALAGE_CLICK_AUDIO_ENG = "assets/images/algae_click.mp3";
 
   //3
 
@@ -48,10 +71,19 @@ class ImageResource {
 
   static const String FUNGI_DOC_TAMIL = "assets/images/fundi_doc_tamil.pdf";
 
-//  static const String FUNGI_IMAGE = "assets/images/fungi_image.png";
-
   static const String FUNGI_IMAGE = "assets/images/fungi.gif";
 
+  static const String FUNGI_MILD_AUDIO_ENG = "assets/images/mild_eng_fungi.mp3";
+
+  static const String FUNGI_MILD_AUDIO_TAMIL = "assets/images/mild_fungi.mp3";
+
+  static const String FUNGI_MILD_DOC_ENG = "assets/images/mild_eng_fungi.pdf";
+
+  static const String FUNGI_MILD_DOC_TAMIL = "assets/images/mild_fungi.pdf";
+
+  static const String FUNGI_CLICK_AUDIO_TAMIL = "assets/images/fungi_tamil_click.mp3";
+
+  static const String FUNGI_CLICK_AUDIO_ENG = "assets/images/fungi_click.mp3";
   //4
 
   static const String BYRO_AUDIO_ENG = "assets/images/byro_audio_english.mp3";
@@ -62,9 +94,19 @@ class ImageResource {
 
   static const String BYRO_DOC_TAMIL = "assets/images/byro_doc_tamil.pdf";
 
-  // static const String BYRO_IMAGE = "assets/images/byro_image.png";
-
   static const String BYRO_IMAGE = "assets/images/bryo.gif";
+
+  static const String BYRO_MILD_AUDIO_ENG = "assets/images/mild_eng_bryophytes.mpeg";
+
+  static const String BYRO_MILD_AUDIO_TAMIL = "assets/images/mild_bryophyta.mp3";
+
+  static const String BYRO_MILD_DOC_ENG = "assets/images/mild_eng_bryophytes.pdf";
+
+  static const String BYRO_MILD_DOC_TAMIL = "assets/images/mild_bryophytes.pdf";
+
+  static const String BYRO_CLICK_AUDIO_TAMIL = "assets/images/bryophytes_tamil_click.mp3";
+
+  static const String BYRO_CLICK_AUDIO_ENG = "assets/images/bryophytes_click.mp3";
 
   //5
 
@@ -76,9 +118,19 @@ class ImageResource {
 
   static const String PTER_DOC_TAMIL = "assets/images/pter_doc_tamil.pdf";
 
-//  static const String PTER_IMAGE = "assets/images/pter_image.png";
+  static const String PTER_MILD_AUDIO_ENG = "assets/images/mild_eng_pteridophytes.mp3";
+
+  static const String PTER_MILD_AUDIO_TAMIL = "assets/images/mild_pteridophytes.mp3";
+
   static const String PTER_IMAGE = "assets/images/ptetro.gif";
 
+  static const String PTER_MILD_DOC_ENG = "assets/images/mild_eng_pteridophytes.pdf";
+
+  static const String PTER_MILD_DOC_TAMIL = "assets/images/mild_pteridophytes.pdf";
+
+  static const String PTER_CLICK_AUDIO_TAMIL = "assets/images/pteridophytes_tamil_click.mp3";
+
+  static const String PTER_CLICK_AUDIO_ENG = "assets/images/pteridophytes_click.mp3";
 //6
   static const String GYMNO_AUDIO_ENG = "assets/images/gymno_audio_english.mp3";
 
@@ -91,6 +143,18 @@ class ImageResource {
   // static const String GYMNO_IMAGE = "assets/images/gymno_image.png";
 
   static const String GYMNO_IMAGE = "assets/images/gymno.gif";
+
+  static const String GYMNO_MILD_AUDIO_ENG = "assets/images/mild_eng_gymnosperms.mp3";
+
+  static const String GYMNO_MILD_AUDIO_TAMIL = "assets/images/mild_gymnosperms.mp3";
+
+  static const String GYMNO_MILD_DOC_ENG = "assets/images/mild_eng_gymnosperms.pdf";
+
+  static const String GYMNO_MILD_DOC_TAMIL = "assets/images/mild_gymnosperms.pdf";
+
+  static const String GYMNO_CLICK_AUDIO_TAMIL = "assets/images/gymnosperms_tamil_click.mp3";
+
+  static const String GYMNO_CLICK_AUDIO_ENG = "assets/images/gymnosperms_click.mp3";
 //
   //7
 
@@ -105,6 +169,18 @@ class ImageResource {
   //static const String ANGIO_IMAGE = "assets/images/angio_image.png";
 
   static const String ANGIO_IMAGE = "assets/images/angio.gif";
+
+  static const String ANGIO_MILD_AUDIO_ENG = "assets/images/mild_eng_angiosperms.mp3";
+
+  static const String ANGIO_MILD_AUDIO_TAMIL = "assets/images/mild_angiosperms.mp3";
+
+  static const String ANGIO_MILD_DOC_ENG = "assets/images/mild_eng_angiosperms.pdf";
+
+  static const String ANGIO_MILD_DOC_TAMIL = "assets/images/mild_angiosperms.pdf";
+
+  static const String ANGIO_CLICK_AUDIO_TAMIL = "assets/images/angiosperms_tamil_click.mp3";
+
+  static const String ANGIO_CLICK_AUDIO_ENG = "assets/images/angiosperms_click.mp3";
 
   //8
 

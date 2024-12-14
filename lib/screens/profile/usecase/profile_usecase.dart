@@ -22,7 +22,7 @@ class ProfileParams extends Equatable {
   final int? id;
   final String name;
   final String className;
-  final String? disablityType;
+  final int? disablityType;
 
   const ProfileParams(
       {required this.id,

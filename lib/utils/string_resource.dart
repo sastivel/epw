@@ -14,11 +14,12 @@ class StringResource {
   static const String ENTRSTUDNAME = "ENTRSTUDNAME";
   static const String CLASS = "class";
   static const String DISBLITYTYPE = "DISBLITYTYPE";
+  static const String SELECTDISBLITYTYPE = "SELECTDISBLITYTYPE";
   static const String DISBLITYTYPETRUEORFALSE = "DISBLITYTYPETRUEORFALSE";
-  static const String VisualImpairment = "Visual Impairment";
-  static const String HearingImpairment = "Hearing Impairment";
+  static const String VisualImpairment = "VisualImpairment";
+  static const String HearingImpairment = "HearingImpairment";
   static const String MildIntellectualDisability =
-      "Mild Intellectual Disability";
+      "MildIntellectualDisability";
 //homescreen
   static const String WELCOME = "Welcome";
   static const String PROFILE = "Profile";

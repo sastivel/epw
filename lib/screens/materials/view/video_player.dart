@@ -20,7 +20,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.initState();
 
     // Initialize the VideoPlayerController with an online video URL
-    _videoPlayerController = VideoPlayerController.network(widget.url)
+    _videoPlayerController = VideoPlayerController.networkUrl(Uri.parse(widget.url))
       ..initialize().then((_) {
         setState(() {});
       });
@@ -40,7 +40,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
         backgroundColor: Colors.grey,
         bufferedColor: Colors.lightGreen,
       ),
-      autoInitialize: true,
+      autoInitialize: false,
     );
   }
 

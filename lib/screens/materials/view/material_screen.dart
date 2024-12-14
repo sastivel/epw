@@ -29,9 +29,9 @@ class _MaterialScreenState extends State<MaterialScreen> {
     super.dispose();
   }
 
-  Future<void> _playSound() async {
+  Future<void> _playSound(audio) async {
     try {
-      await _player.setAsset('assets/images/mouse_click.mp3');
+      await _player.setAsset(audio);
       _player.play();
     } catch (e) {
       print("Error loading audio: $e");
@@ -72,7 +72,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
     return InkWell(
       onTap: () async {
         SystemSound.play(SystemSoundType.click);
-        await _playSound(); // Play sound on tap
+        await _playSound(context.locale.toString() == "ta_IN" ? material["tamil_click_audio"] : material["english_click_audio"] ); // Play sound on tap
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -84,11 +84,11 @@ class _MaterialScreenState extends State<MaterialScreen> {
         child: Stack(
           children: [
             Container(
-             // height: MediaQuery.of(context).size.height/3,
+              height: MediaQuery.of(context).size.height/3,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
               ),
-              margin: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(top:5,left: 5,right: 5, bottom: 30),
               padding: const EdgeInsets.all(5),
               child: GifView.asset(
                 material['image'], // Load the GIF from asset
@@ -108,7 +108,7 @@ class _MaterialScreenState extends State<MaterialScreen> {
       child: Column(
         children: [
           Container(
-          //  height: 50,
+          height: 50,
             width: MediaQuery.of(context).size.width/2.06,
             color: Colors.black.withOpacity(0.4),
             child: Row(

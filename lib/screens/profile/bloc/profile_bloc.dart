@@ -2,6 +2,8 @@ import 'package:EPW_mobile/api/interface/base/base_response.dart';
 import 'package:EPW_mobile/api/interface/login/login_response.dart';
 import 'package:EPW_mobile/screens/profile/bloc/profile_event.dart';
 import 'package:EPW_mobile/screens/profile/bloc/profile_state.dart';
+import 'package:EPW_mobile/utils/string_resource.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../core/preference/app_preference.dart';
 import '../../../utils/common_imports.dart';
@@ -47,7 +49,7 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
     if (loginResponseModel?.student != null &&
         loginResponseModel?.student?.className != null) {
       selectedClassName = loginResponseModel?.student?.className;
-      selectedDisablityType = loginResponseModel?.student?.disablityType;
+      selectedDisablityType =getSelectedTypeByValue(loginResponseModel?.student?.disablityType);
       if (selectedDisablityType == null || selectedDisablityType == '') {
         isChildDisablity = "No";
       } else {
@@ -81,8 +83,8 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
   Future<void> onProfileScreenDisablityStatusDropDownEvent(
       ProfileScreenDisablityStatusDropDownEvent event,
       Emitter<ProfileScreenState> emit) async {
-    isChildDisablity = event.selectedValue != null && event.selectedValue != '' ? "Yes" : "No"  ;
-    selectedDisablityType = "Visual Impairment";
+    isChildDisablity = event.selectedValue;
+    selectedDisablityType = StringResource.SELECTDISBLITYTYPE.tr();
     emit(ProfileScreenLoadingCompletedState());
     return;
   }
@@ -109,7 +111,7 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
             id: loginResponseModel?.student?.id,
             name: nameTextController.text,
             className: selectedClassName!,
-            disablityType: selectedDisablityType ?? null));
+            disablityType: isChildDisablity == null || isChildDisablity == "No" ? null : getSelectedType()));
 
     response.fold(
         (l) => {emit(ProfileScreenErrorState(l.toString()))},
@@ -120,4 +122,36 @@ class ProfileScreenBloc extends Bloc<ProfileScreenEvent, ProfileScreenState> {
               emit(ProfileScreenSuccessState(message: r.msg))
             });
   }
+
+  getSelectedType(){
+    int value = 0;
+    if(selectedDisablityType != null && (selectedDisablityType == "Visual Impairment" ||  selectedDisablityType == "பார்வை கோளாறு")){
+       value = 1;
+    }
+    if(selectedDisablityType != null && (selectedDisablityType == "Hearing Impairment" ||  selectedDisablityType == "செவித்திறன் குறைபாடு")){
+       value = 2;
+    }
+    if(selectedDisablityType != null && (selectedDisablityType == "Mild Intellectual Disability" ||  selectedDisablityType == "லேசான அறிவுசார் குறைபாடு")){
+       value = 3;
+    }
+    return value;
+  }
+
+  getSelectedTypeByValue(value){
+    String? selectedDisabilityType = null;
+    if(value == "1"){
+      selectedDisabilityType = StringResource.VisualImpairment.tr();
+    }
+    if(value == "2"){
+      selectedDisabilityType = StringResource.HearingImpairment.tr();
+    }
+    if(value == "3"){
+      selectedDisabilityType = StringResource.MildIntellectualDisability.tr();
+    }
+
+    return selectedDisabilityType;
+  }
 }
+
+
+

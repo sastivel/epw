@@ -117,9 +117,10 @@ class RegisterScreenWidgets {
               iconSize: 0,
               borderRadius: BorderRadius.circular(8),
               items: <String>[
-                "Visual Impairment",
-                "Hearing Impairment",
-                "Mild Intellectual Disability",
+                StringResource.SELECTDISBLITYTYPE.tr(),
+                StringResource.VisualImpairment.tr(),
+                StringResource.HearingImpairment.tr(),
+                StringResource.MildIntellectualDisability.tr(),
               ].map((String value) {
                 return DropdownMenuItem<String>(
                   value: value,

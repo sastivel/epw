@@ -23,7 +23,7 @@ class RegisterUseCase extends UseCase<RegisterResponseModel, RegisterParams> {
 class RegisterParams extends Equatable {
   final String name;
   final String className;
-  final String? disablityType;
+  final int? disablityType;
 
   const RegisterParams({
     required this.name,

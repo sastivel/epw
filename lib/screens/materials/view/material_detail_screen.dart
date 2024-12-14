@@ -52,13 +52,21 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
 
   Future<void> _loadPDF() async {
     final locale = context.locale.toString();
-    final pdfPath = locale == "ta_IN" ? widget.info['tamil_pdf'] : widget.info['english_pdf'];
+    final disabilityType = loginResponseModel?.student?.disablityType;
+
+    // Determine the correct PDF path based on locale and disability type
+    final pdfPath = (disabilityType == "3" && widget.info['type'] != "FLOWCHART")
+        ? (locale == "ta_IN" ? widget.info['tamil_mild_doc'] : widget.info['english_mild_doc'])
+        : (locale == "ta_IN" ? widget.info['tamil_pdf'] : widget.info['english_pdf']);
+
+    // Load the PDF
     doc = await PDFDocument.fromAsset(pdfPath);
     print("Loaded PDF: $pdfPath");
   }
 
   @override
   Widget build(BuildContext context) {
+    final locale = context.locale.toString();
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -71,11 +79,11 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
               _buildImageCard(),
               const SizedBox(height: 50),
               if (widget.info['tamil_pdf'] != null || widget.info['english_pdf'] != null)
-                _buildPDFButton(),
+                _buildPDFButton(locale),
               const SizedBox(height: 20),
               if (_isAudioAvailable()) _buildAudioPlayer(),
-              const SizedBox(height: 20),
-              if (_isVideoAvailable()) _buildVideoPlayer(),
+              // const SizedBox(height: 20),
+              // if (_isVideoAvailable()) _buildVideoPlayer(),
             ],
           ),
         ),
@@ -101,13 +109,13 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
     );
   }
 
-  Widget _buildPDFButton() {
+  Widget _buildPDFButton(locale) {
     return InkWell(
       onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PDFViewerScreen(doc: doc),
+            builder: (context) => PDFViewerScreen(doc: doc,canShowVideo: loginResponseModel?.student?.disablityType == "2" ? true : false, videoUrl:locale == "ta_IN" ?  widget.info['tamil_video']  : widget.info['english_video']),
           ),
         );
       },
@@ -129,33 +137,19 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
   }
 
   bool _isAudioAvailable() {
-    return loginResponseModel?.student?.disablityType == "Visual Impairment" &&
-        (widget.info['tamil_audio'] != null || widget.info['english_audio'] != null);
+    return loginResponseModel?.student?.disablityType == null ? false : (loginResponseModel?.student?.disablityType == "1") ?
+        (widget.info['tamil_audio'] != null || widget.info['english_audio'] != null) : ( loginResponseModel?.student?.disablityType == "3") ?
+        (widget.info['tamil_mild_audio'] != null || widget.info['english_mild_audio'] != null) : false
+    ;
   }
 
   Widget _buildAudioPlayer() {
     final audioUrl = context.locale.toString() == "ta_IN"
-        ? widget.info['tamil_audio']
-        : widget.info['english_audio'];
+        ? (loginResponseModel?.student?.disablityType == "1") ? widget.info['tamil_audio'] : widget.info['tamil_mild_audio']
+        : (loginResponseModel?.student?.disablityType == "1") ? widget.info['english_audio'] : widget.info['english_mild_audio'];
     return AudioContainer(url: audioUrl, audioLock: audioLock);
   }
 
-  bool _isVideoAvailable() {
-    return loginResponseModel?.student?.disablityType != "Visual Impairment" &&
-        (widget.info['tamil_video'] != null || widget.info['english_video'] != null);
-  }
-
-  Widget _buildVideoPlayer() {
-    final videoUrl = context.locale.toString() == "ta_IN"
-        ? widget.info['tamil_video']
-        : widget.info['english_video'];
-    return Container(
-      margin: EdgeInsets.all(10),
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height/4,
-      child: VideoPlayerScreen(url: videoUrl),
-    );
-  }
 
   @override
   void dispose() {

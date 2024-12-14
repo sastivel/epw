@@ -4,6 +4,8 @@ import 'package:EPW_mobile/screens/register/bloc/register_event.dart';
 import 'package:EPW_mobile/screens/register/bloc/register_state.dart';
 import 'package:EPW_mobile/screens/profile/bloc/profile_event.dart';
 import 'package:EPW_mobile/screens/profile/bloc/profile_state.dart';
+import 'package:EPW_mobile/utils/string_resource.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../../../core/preference/app_preference.dart';
 import '../../../utils/common_imports.dart';
@@ -42,7 +44,7 @@ class RegisterScreenBloc
   ) async {
     //  AppUtils.isLoggedIn = false;
     selectedClassName = '6';
-    selectedDisablityType = "Visual Impairment";
+    selectedDisablityType = StringResource.SELECTDISBLITYTYPE.tr();
     isChildDisablity = "No";
     loginResponseModel = await appPreferences.getUser();
     print("***************loginResponseModel******");
@@ -70,6 +72,7 @@ class RegisterScreenBloc
       RegisterScreenDisablityStatusDropDownEvent event,
       Emitter<RegisterScreenState> emit) async {
     isChildDisablity = event.selectedValue;
+    selectedDisablityType = StringResource.SELECTDISBLITYTYPE.tr();
     emit(RegisterScreenLoadingCompletedState());
     return;
   }
@@ -95,7 +98,7 @@ class RegisterScreenBloc
         params: RegisterParams(
             name: nameTextController.text,
             className: selectedClassName!,
-            disablityType:  selectedDisablityType != null ? selectedDisablityType : null));
+            disablityType:  selectedDisablityType != null ? getSelectedType() : null));
 
     response.fold(
         (l) => {emit(RegisterScreenErrorState(l.toString()))},
@@ -104,5 +107,19 @@ class RegisterScreenBloc
               appPreferences.setUser(loginResponseModel!),
               emit(RegisterScreenSuccessState(message: r.msg))
             });
+  }
+
+  getSelectedType(){
+    int value = 0;
+    if(selectedDisablityType != null && (selectedDisablityType == "Visual Impairment" ||  selectedDisablityType == "பார்வை கோளாறு")){
+      value = 1;
+    }
+    if(selectedDisablityType != null && (selectedDisablityType == "Hearing Impairment" ||  selectedDisablityType == "செவித்திறன் குறைபாடு")){
+      value = 2;
+    }
+    if(selectedDisablityType != null && (selectedDisablityType == "Mild Intellectual Disability" ||  selectedDisablityType == "லேசான அறிவுசார் குறைபாடு")){
+      value = 3;
+    }
+    return value;
   }
 }

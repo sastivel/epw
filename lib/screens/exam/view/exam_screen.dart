@@ -14,6 +14,7 @@ import '../../base/state/base_hook_consumer_widget.dart';
 import '../../questions/bloc/question_event.dart';
 import '../../scorecard/bloc/Scorecard_event.dart';
 import '../../scorecard/bloc/scorecard_bloc.dart';
+import '../bloc/exam_event.dart';
 import '../bloc/exam_state.dart';
 
 class ExamScreen extends BaseHookWidget {
@@ -43,6 +44,14 @@ class ExamScreen extends BaseHookWidget {
     );
     final appLifecycleState = useAppLifecycleState();
 
+    useEffect(() {
+      if (appLifecycleState == AppLifecycleState.resumed) {
+        examScreenBloc!.add(ExamScreenInitialEvent());
+      }
+      return null;
+    }, [appLifecycleState]);
+
+
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
@@ -52,7 +61,7 @@ class ExamScreen extends BaseHookWidget {
                   )
                 : examScreenBloc!.diaAbilityType != null &&
                         examScreenBloc!.diaAbilityType ==
-                            'Mild Intellectual Disability'
+                            '3'
                     ? Container(
                         height: MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width,

@@ -69,7 +69,7 @@ class AuthendicationRemoteDataSourceImpl
         'user_id': responseModel?.user?.id,
         'name': registerParams.name,
         'class': registerParams.className,
-        'disability_type': registerParams.disablityType
+        'disability_type': registerParams.disablityType.toString()
       };
 
       Response response = await dioHelper.dio.post(
@@ -105,7 +105,7 @@ class AuthendicationRemoteDataSourceImpl
         'id': profileParams.id,
         'name': profileParams.name,
         'class': profileParams.className,
-        'disability_type': profileParams.disablityType
+        'disability_type': profileParams.disablityType.toString()
       };
       print('******************id*****************');
       print(body.toString());
