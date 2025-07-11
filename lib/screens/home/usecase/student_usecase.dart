@@ -1,6 +1,5 @@
 import 'package:EPW_mobile/core/model/login/student_response.dart';
 
-import '../../../api/interface/login/login_response.dart';
 import "package:dartz/dartz.dart";
 
 import '../../../core/error/error_failure.dart';

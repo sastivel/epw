@@ -1,6 +1,4 @@
-import 'package:EPW_mobile/screens/base/state/base_hook_consumer_widget.dart';
 import 'package:EPW_mobile/screens/materials/view/video_player.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';

@@ -2,8 +2,6 @@ import 'package:EPW_mobile/api/interface/base/base_response.dart';
 import 'package:EPW_mobile/api/interface/login/login_response.dart';
 import 'package:EPW_mobile/screens/register/bloc/register_event.dart';
 import 'package:EPW_mobile/screens/register/bloc/register_state.dart';
-import 'package:EPW_mobile/screens/profile/bloc/profile_event.dart';
-import 'package:EPW_mobile/screens/profile/bloc/profile_state.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 

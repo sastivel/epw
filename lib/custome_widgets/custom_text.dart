@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/color_resource.dart';
 import '../utils/fonts.dart';
-import 'custom_style.dart';
 
 
 class CustomText extends StatelessWidget {
@@ -46,7 +44,7 @@ class CustomText extends StatelessWidget {
             fontWeight: fontWeight,
             overflow: isSingleLine ? TextOverflow.ellipsis : null,
             // fontSize: fontSize,
-            fontSize: ScreenUtil().setSp(fontSize),
+            fontSize: fontSize,
             height: lineHeight));
 
     if (onTap != null) {

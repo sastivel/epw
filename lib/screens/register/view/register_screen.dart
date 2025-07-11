@@ -1,8 +1,7 @@
 import 'package:EPW_mobile/screens/home/screens/home_screen.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import '../../../core/router/app_routes.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
-import '../../../custome_widgets/custom_translation_widget.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
@@ -43,50 +42,41 @@ class RegisterScreen extends BaseHookWidget {
 
     useEffect(() {
       if (appLifecycleState == AppLifecycleState.resumed) {
-        registerScreenBloc!.nameTextController!.clear();
+        registerScreenBloc!.nameTextController.clear();
       }
       return null;
     }, [appLifecycleState]);
 
     return SafeArea(
         child: Scaffold(
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: true,
             body: Container(
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: ExactAssetImage(ImageResource.APPBG2),
-                  fit: BoxFit.fitWidth,
-                  alignment: Alignment.topCenter,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
                 ),
               ),
-              child: Column(
-                children: [
-                  //                   Container(
-                  // //width:
-                  //              // height: MediaQuery.of(context).size.height,
-                  //            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
-                  //         child: Image.asset(
-
-                  //            ImageResource.APPLOGO,
-                  //           fit: BoxFit.cover,
-
-                  //              ),
-
-                  //       ),
-
-                  //       SizedBox(height: 50,),
-
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.8),
-                    child: bodyWidget(state, context),
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 2.8),
+                  child:ScreenTypeLayout.builder(
+                    mobile: (BuildContext context) =>  bodyWidget(state, context,"MOBILE"),
+                    tablet: (BuildContext context) =>  bodyWidget(state, context,"TABLET"),
+                    desktop: (BuildContext context) =>  bodyWidget(state, context,"DESKTOP"),
+                    watch:  (BuildContext context) => bodyWidget(state, context,"WATCH"),
                   ),
-                ],
+
+
+                ),
               ),
             )));
   }
 
-  bodyWidget(RegisterScreenState state, BuildContext context) {
+  bodyWidget(RegisterScreenState state, BuildContext context,String type) {
     if (state is RegisterScreenLoadingState) {
       return const Center(child: CircularProgressIndicator());
     } else {
@@ -96,23 +86,23 @@ class RegisterScreen extends BaseHookWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            RegisterScreenWidgets.nameTxtBox(context, registerScreenBloc!),
+            RegisterScreenWidgets.nameTxtBox(context, registerScreenBloc!,type),
             const SizedBox(
               height: 25,
             ),
-            RegisterScreenWidgets.classDropDown(context, registerScreenBloc!),
+            RegisterScreenWidgets.classDropDown(context, registerScreenBloc!,type),
             const SizedBox(
               height: 25,
             ),
             RegisterScreenWidgets.disablityStatusDropDown(
-                context, registerScreenBloc!),
+                context, registerScreenBloc!,type),
             const SizedBox(
               height: 25,
             ),
             if (registerScreenBloc!.isChildDisablity != null &&
                 registerScreenBloc!.isChildDisablity == "Yes")
               RegisterScreenWidgets.disablityDropDown(
-                  context, registerScreenBloc!),
+                  context, registerScreenBloc!,type),
             const SizedBox(
               height: 25,
             ),
@@ -120,7 +110,7 @@ class RegisterScreen extends BaseHookWidget {
                 ? const Center(
                     child: CircularProgressIndicator(),
                   )
-                : RegisterScreenWidgets.registerbtn(context, registerScreenBloc!),
+                : RegisterScreenWidgets.registerbtn(context, registerScreenBloc!,type),
             const SizedBox(
               height: 15,
             ),

@@ -96,4 +96,11 @@ class StringResource {
   static const String choose7 = "choose7";
   static const String choose8 = "choose8";
   static const String choose9 = "choose9";
+
+  static const String correctAnswerCount = "correct_answer_count";
+  static const String correctFillups = "correct_fillups";
+  static const String correctChooseOneCount = "correct_choose_one_count";
+  static const String correctOneWordCount = "correct_one_word_count";
+  static const String correctTrueFalseCount = "correct_true_false_count";
+  static const String correctMatchCount = "correct_match_count";
 }

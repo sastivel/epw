@@ -55,7 +55,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     response.fold(
         (l) => {emit(HomeScreenErrorState(l.toString()))},
         (r) => {
-              if (r != null && r.students != null && r.students!.isNotEmpty)
+              if (r.students != null && r.students!.isNotEmpty)
                 {
                   studentList = r.students,
                 }

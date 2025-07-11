@@ -4,8 +4,6 @@ import '../../../custome_widgets/custom_style.dart';
 import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/string_resource.dart';
-import '../../profile/bloc/profile_bloc.dart';
-import 'package:EPW_mobile/utils/color_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 
 import '../bloc/exam_event.dart';

@@ -1,5 +1,5 @@
-import 'package:EPW_mobile/screens/login/usecase/login_usecase.dart';
 import '../../../api/interface/login/login_response.dart';
+import '../../../core/model/exam/get_scorecard_response.dart';
 import '../../../core/preference/app_preference.dart';
 import '../../../utils/common_imports.dart';
 import '../usecase/get_scorecard_response.dart';
@@ -17,6 +17,8 @@ class ScorecardScreenBloc extends Bloc<ScorecardScreenEvent, ScorecardScreenStat
   bool? languageValue;
   int? answerCount;
   String? diaAbilityType;
+  Scorecard? scorecard;
+
 
 
   ScorecardScreenBloc({required this.getScoreCardUseCase, required this.appPreferences})
@@ -44,6 +46,7 @@ class ScorecardScreenBloc extends Bloc<ScorecardScreenEvent, ScorecardScreenStat
         (l) => {emit(ScorecardScreenErrorState(l.toString()))},
         (r) => {
          answerCount =   r.scorecard!.correctAnswerCount,
+          scorecard = r.scorecard,
               emit(ScorecardScreenSuccessState())
             });
       emit(ScorecardScreenLoadingCompletedState());

@@ -2,7 +2,6 @@
 import 'package:EPW_mobile/screens/login/view/login_screen.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hooked_bloc/hooked_bloc.dart';
 import 'package:sizer/sizer.dart';
 
@@ -32,26 +31,18 @@ Future<void> main() async {
     saveLocale: true,
     startLocale: const Locale('en', 'US') ,
         child: Sizer(
-          builder: (BuildContext context, Orientation orientation,
-              DeviceType deviceType) {
-            return MaterialApp(
-              home: LoginScreen() ,
+          builder: (context , Orientation , ScreenType ) {
+            return  MaterialApp(
+              home: LoginScreen(),
               navigatorKey: navigatorKey,
               title: StringResource.APPBARTXT,
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
-               locale: context.locale,
-              // supportedLocales: const [
-              //   Locale('en'),
-              // ],
-              // routeInformationProvider:
-              //     AppPages.router.routeInformationProvider,
-              // routeInformationParser: AppPages.router.routeInformationParser,
-              // routerDelegate: AppPages.router.routerDelegate,
+              locale: context.locale,
               debugShowCheckedModeBanner: false,
             );
           },
-        ),
+        )
       ),
     ),
   );

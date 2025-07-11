@@ -1,5 +1,4 @@
 import 'package:EPW_mobile/custome_widgets/custom_style.dart';
-import 'package:EPW_mobile/custome_widgets/custom_translation_widget.dart';
 import 'package:EPW_mobile/screens/explore_screen/view/explore_screen.dart';
 import 'package:EPW_mobile/screens/home/bloc/home_bloc.dart';
 import 'package:EPW_mobile/screens/home/bloc/home_event.dart';
@@ -12,11 +11,11 @@ import 'package:EPW_mobile/utils/color_resource.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
-import '../../login/bloc/login_state.dart';
 import '../../materials/view/material_screen.dart';
 import '../bloc/Home_state.dart';
 import '../widgets/home_Screen_widget.dart';
@@ -40,6 +39,7 @@ class HomeScreen extends BaseHookWidget {
         homeScreenBloc!.add(HomeScreenInitialEvent());
         //  });
       }
+      return null;
     }, [appLifecycleState]);
     print(context.locale);
     return SafeArea(
@@ -53,11 +53,17 @@ class HomeScreen extends BaseHookWidget {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: bodyWidget(context, state),
+              child:ScreenTypeLayout.builder(
+                mobile: (BuildContext context) =>  bodyWidget(state, context,"MOBILE"),
+                tablet: (BuildContext context) =>  bodyWidget(state, context,"TABLET"),
+                desktop: (BuildContext context) =>  bodyWidget(state, context,"DESKTOP"),
+                watch:  (BuildContext context) => bodyWidget(state, context,"WATCH"),
+              ),
+
             )));
   }
 
-  bodyWidget(BuildContext context, state) {
+  bodyWidget(state,BuildContext context,String type) {
     return state is HomeScreenLoadingState
         ? Container(
         height: MediaQuery.of(context).size.height,
@@ -71,7 +77,7 @@ class HomeScreen extends BaseHookWidget {
                 height: 30,
               ),
               Container(
-                margin: EdgeInsets.only(right: 10),
+                margin: EdgeInsets.only(right: 10,),
                 child: Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: InkWell(
@@ -127,12 +133,12 @@ class HomeScreen extends BaseHookWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
+               SizedBox(
+                height: type == "TABLET" ? 60:0 ,
               ),
               MyHomeScreenWidgets.languageSwitch(homeScreenBloc!, context),
-              const SizedBox(
-                height: 30,
+               SizedBox(
+                height: type == "TABLET" ? 90:0 ,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -145,7 +151,7 @@ class HomeScreen extends BaseHookWidget {
                           pushNamed(context, ProfileScreen());
                         },
                         child: MyHomeScreenWidgets.cardWithImage(context, true,
-                            ImageResource.PROFILE, StringResource.PROFILE),
+                            ImageResource.PROFILE, StringResource.PROFILE,type),
                       ),
                       InkWell(
                         onTap: () {
@@ -155,7 +161,7 @@ class HomeScreen extends BaseHookWidget {
                                   builder: (context) => MaterialScreen()));
                         },
                         child: MyHomeScreenWidgets.cardWithImage(context, true,
-                            ImageResource.STUDYMAT, StringResource.STUDYMAT),
+                            ImageResource.STUDYMAT, StringResource.STUDYMAT,type),
                       )
                     ],
                   ),
@@ -167,7 +173,7 @@ class HomeScreen extends BaseHookWidget {
                               builder: (context) => ExploreScreen()));
                     },
                     child: MyHomeScreenWidgets.cardWithImage(context, false,
-                        ImageResource.QUIZ, StringResource.QUIZ),
+                        ImageResource.QUIZ, StringResource.QUIZ,type),
                   )
                 ],
               )

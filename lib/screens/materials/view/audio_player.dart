@@ -1,5 +1,4 @@
 import 'package:EPW_mobile/screens/materials/view/seek_bar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
@@ -38,6 +37,7 @@ class _AudioContainerState extends State<AudioContainer>
 
   @override
   void initState() {
+
     initAudio();
     super.initState();
   }

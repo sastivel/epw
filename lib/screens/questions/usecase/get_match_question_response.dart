@@ -1,4 +1,3 @@
-import 'package:EPW_mobile/core/model/exam/getQuestionsResponse.dart';
 import 'package:EPW_mobile/core/model/exam/match_question_response.dart';
 
 import "package:dartz/dartz.dart";

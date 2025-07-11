@@ -1,6 +1,7 @@
 import 'package:EPW_mobile/screens/home/screens/home_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
@@ -50,58 +51,33 @@ class ProfileScreen extends BaseHookWidget {
 
     return SafeArea(
         child: Scaffold(
-            resizeToAvoidBottomInset: false,
+            resizeToAvoidBottomInset: true,
             body: Container(
+              height: MediaQuery.of(context).size.height,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: ExactAssetImage(ImageResource.APPBG2),
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: Column(
-                children: [
-                  // Container(
-                  //   margin: EdgeInsets.all(20),
-                  //   child: Align(
-                  // alignment: AlignmentDirectional.topStart,
-                  //     child: InkWell(
-                  //                   onTap: () async {
-
-                  //     pushReplacement(context, HomeScreen());
-                  //                   },
-                  //                   child: const Icon(
-                  //     Icons.arrow_back,
-                  //     color: ColorResource.COLOR_APP_TEXT_FIELD_BORDER,
-                  //                   )),
-                  //   ),
-                  // ),
-                  //                   Container(
-                  // //width:
-                  //              // height: MediaQuery.of(context).size.height,
-                  //            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
-                  //         child: Image.asset(
-
-                  //            ImageResource.APPLOGO,
-                  //           fit: BoxFit.cover,
-
-                  //              ),
-
-                  //       ),
-
-                  //       SizedBox(height: 50,),
-
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.8),
-                    child: bodyWidget(state, context),
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 2.8),
+                  child: ScreenTypeLayout.builder(
+                    mobile: (BuildContext context) =>  bodyWidget(state, context,"MOBILE"),
+                    tablet: (BuildContext context) =>  bodyWidget(state, context,"TABLET"),
+                    desktop: (BuildContext context) =>  bodyWidget(state, context,"DESKTOP"),
+                    watch:  (BuildContext context) => bodyWidget(state, context,"WATCH"),
                   ),
-                ],
+
+                ),
               ),
             )));
   }
 
-  bodyWidget(ProfileScreenState state, BuildContext context) {
+  bodyWidget(ProfileScreenState state, BuildContext context,String type) {
     if (state is ProfileScreenLoadingState) {
       return const Center(child: CircularProgressIndicator());
     } else {

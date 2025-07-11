@@ -279,13 +279,13 @@ class AppUtils {
     switch (type) {
       case DioErrorType.cancel:
         return StringResource.dioException;
-      case DioErrorType.connectTimeout:
+      case DioErrorType.connectionTimeout:
         return StringResource.connectionTimeOut;
-      case DioErrorType.other:
+      case DioErrorType.unknown:
         return StringResource.dioException;
       case DioErrorType.receiveTimeout:
         return StringResource.receiveTimeout;
-      case DioErrorType.response:
+      case DioErrorType.badResponse:
         return StringResource.responseError;
       case DioErrorType.sendTimeout:
         return StringResource.sendTimeout;

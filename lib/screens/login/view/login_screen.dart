@@ -2,12 +2,12 @@ import 'package:EPW_mobile/screens/home/bloc/home_bloc.dart';
 import 'package:EPW_mobile/screens/home/screens/home_screen.dart';
 import 'package:EPW_mobile/utils/image_resource.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:responsive_builder/responsive_builder.dart';
 
 import '../../../custome_widgets/custom_translation_widget.dart';
 import '../../../utils/common_imports.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
 
-import '../../home/bloc/home_event.dart';
 import '../../register/view/register_screen.dart';
 import '../bloc/login_bloc.dart';
 import '../bloc/login_state.dart';
@@ -55,7 +55,10 @@ class LoginScreen extends BaseHookWidget {
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
+
             body: Container(
+              height: MediaQuery.of(context).size.height,
+
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: ExactAssetImage(ImageResource.APPBG2),
@@ -63,32 +66,20 @@ class LoginScreen extends BaseHookWidget {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child: Column(
-                children: [
-                  //                   Container(
-                  // //width:
-                  //              // height: MediaQuery.of(context).size.height,
-                  //            margin: EdgeInsets.only(top: MediaQuery.of(context).size.height/4),
-                  //         child: Image.asset(
-
-                  //            ImageResource.APPLOGO,
-                  //           fit: BoxFit.cover,
-
-                  //              ),
-
-                  //       ),
-
-                  // SizedBox(height: 20,),
-
-                  Container(
-                    margin: EdgeInsets.only(
-                        top: MediaQuery.of(context).size.height / 2.5),
-                    child: Align(
-                      alignment: AlignmentDirectional.center,
-                      child: bodyWidget(state, context),
-                    ),
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: EdgeInsets.only(
+                      top: MediaQuery.of(context).size.height / 2.5,bottom: 100),
+                  child: Align(
+                    alignment: AlignmentDirectional.center,
+                    child:ScreenTypeLayout.builder(
+                        mobile: (BuildContext context) =>  bodyWidget(state, context),
+                        tablet: (BuildContext context) =>  bodyTabWidget(state, context),
+                        desktop: (BuildContext context) =>  bodyWidget(state, context),
+                        watch:  (BuildContext context) => bodyWidget(state, context),
                   ),
-                ],
+                  ),
+                ),
               ),
             )));
   }
@@ -98,9 +89,10 @@ class LoginScreen extends BaseHookWidget {
       return const Center(child: CircularProgressIndicator());
     } else {
       return Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
-          MyLoginWidgets.mobileNumberTextBox(context, loginBloc!),
+
+          MyLoginWidgets.mobileNumberTextBox(context, loginBloc!,"MOBILE"),
           const SizedBox(
             height: 20,
           ),
@@ -112,9 +104,36 @@ class LoginScreen extends BaseHookWidget {
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : MyLoginWidgets.loginbtn(context, loginBloc!),
+              : MyLoginWidgets.loginbtn(context, loginBloc!,"MOBILE"),
         ],
       );
     }
+  }
+
+  bodyTabWidget(LoginScreenState state, BuildContext context) {
+    if (state is LoginScreenLoadingState) {
+      return const Center(child: CircularProgressIndicator());
+    } else {
+      return Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          MyLoginWidgets.mobileNumberTextBox(context, loginBloc!,"TABLET"),
+          const SizedBox(
+            height: 20,
+          ),
+          CustomTranslationWidget(bloc: loginBloc),
+          const SizedBox(
+            height: 20,
+          ),
+          state is LoginScreenLoadingState
+              ? const Center(
+            child: CircularProgressIndicator(),
+          )
+              : MyLoginWidgets.loginbtn(context, loginBloc!,"TABLET"),
+        ],
+      );
+    }
+
+
   }
 }

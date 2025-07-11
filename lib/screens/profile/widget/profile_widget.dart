@@ -189,7 +189,7 @@ class ProfileScreenWidgets {
     return Center(
       child: InkWell(
         onTap: () {
-          bloc!.add(ProfileScreenProfileButtonClickEvent());
+          bloc.add(ProfileScreenProfileButtonClickEvent());
           // Navigator.pushNamed(context, AppRoutes.homeScreen);
         },
         child: Container(

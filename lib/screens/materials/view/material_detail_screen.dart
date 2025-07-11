@@ -1,7 +1,5 @@
 import 'package:EPW_mobile/api/interface/login/login_response.dart';
 import 'package:EPW_mobile/screens/materials/view/pdf_view.dart';
-import 'package:EPW_mobile/screens/materials/view/video_player.dart';
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,7 +7,6 @@ import '../../../core/preference/app_preference.dart';
 import '../../../custome_widgets/custom_style.dart';
 import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
-import '../../../utils/image_resource.dart';
 import '../../../utils/string_resource.dart';
 import 'audio_player.dart';
 
@@ -24,7 +21,7 @@ class MaterialDetailScreen extends StatefulWidget {
 }
 
 class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
-  late final AssetsAudioPlayer assetPlayer;
+
   late final ValueNotifier<String> audioLock;
   SharedPreferences? sharedPreferences;
   AppPreferences? appPreferences;
@@ -35,7 +32,6 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
   @override
   void initState() {
     super.initState();
-    assetPlayer = AssetsAudioPlayer.newPlayer();
     audioLock = ValueNotifier('');
     _initializeData();
   }
@@ -147,13 +143,13 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
     final audioUrl = context.locale.toString() == "ta_IN"
         ? (loginResponseModel?.student?.disablityType == "1") ? widget.info['tamil_audio'] : widget.info['tamil_mild_audio']
         : (loginResponseModel?.student?.disablityType == "1") ? widget.info['english_audio'] : widget.info['english_mild_audio'];
+    print("##########AUDIO${widget.info['english_audio']}###########");
     return AudioContainer(url: audioUrl, audioLock: audioLock);
   }
 
 
   @override
   void dispose() {
-    assetPlayer.dispose();
     super.dispose();
   }
 }

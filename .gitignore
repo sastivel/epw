@@ -11,3 +11,14 @@ GeneratedPluginRegistrant.java
 key.properties
 **/*.keystore
 **/*.jks
+
+# Android-specific
+android/.gradle/
+android/app/build/
+
+# Flutter-specific
+build/
+.dart_tool/
+.flutter-plugins/
+.flutter-plugins-dependencies/
+.packages

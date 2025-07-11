@@ -1,10 +1,12 @@
+import 'package:EPW_mobile/core/model/exam/get_scorecard_response.dart';
+import 'package:EPW_mobile/utils/string_resource.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:just_audio/just_audio.dart';
 
 import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
 import '../../home/screens/home_screen.dart';
-import '../../materials/view/audio_player.dart';
 import '../bloc/Scorecard_state.dart';
 import '../bloc/scorecard_bloc.dart';
 import '../widget/scorecard_widget.dart';
@@ -76,6 +78,18 @@ class ScoreCardScreen extends BaseHookWidget {
                             ),
                           ),
                         ),
+                        Positioned(
+                          bottom: MediaQuery.of(context).size.width / 2.8,
+                          left: MediaQuery.of(context).size.width / 3,
+                          child: Center(
+                            child: InkWell(
+                              onTap: () {
+                                showPopup(context, scorecardScreenBloc?.scorecard,scorecardScreenBloc!);
+                              },
+                              child: ScoreCardWidgets.detailBtn(context),
+                            ),
+                          ),
+                        ),
                         Center(
                           child: Container(
                               margin: EdgeInsets.only(
@@ -109,5 +123,48 @@ class ScoreCardScreen extends BaseHookWidget {
                       ],
                     ),
             )));
+  }
+
+  void showPopup(BuildContext context, Scorecard? scorecard,ScorecardScreenBloc bloc) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title:  Text(StringResource.correctAnswerCount.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+           ListTile(title: Text(StringResource.correctAnswerCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+            trailing: Text(scorecard!.correctAnswerCount.toString()),
+         ),
+              ListTile(title: Text(StringResource.correctFillups.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+                trailing: Text(scorecard.fillUpCount.toString()),
+              ),
+              ListTile(title: Text(StringResource.correctChooseOneCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+                trailing: Text(scorecard.chooseOneCount.toString()),
+              ),
+              ListTile(title: Text(StringResource.correctOneWordCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+                trailing: Text(scorecard.oneWordCount.toString()),
+              ),
+              ListTile(title: Text(StringResource.correctTrueFalseCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+                trailing: Text(scorecard.trueFalseCount.toString()),
+              ),
+              if(bloc.diaAbilityType != "3")
+              ListTile(title: Text(StringResource.correctMatchCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+                trailing: Text(scorecard.matchFollowingCount.toString()),
+              ),
+            ]
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

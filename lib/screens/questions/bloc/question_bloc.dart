@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:EPW_mobile/core/model/exam/match_question_response.dart';
-import 'package:EPW_mobile/screens/login/usecase/login_usecase.dart';
 import 'package:EPW_mobile/screens/questions/bloc/question_event.dart';
 import 'package:EPW_mobile/screens/questions/bloc/question_state.dart';
 import 'package:EPW_mobile/screens/questions/usecase/post_match_answer_usecase.dart';

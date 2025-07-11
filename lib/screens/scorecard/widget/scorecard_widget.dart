@@ -22,4 +22,19 @@ class ScoreCardWidgets {
           style: CustomStyle.size14w500white(),
         ));
   }
+  static Widget detailBtn(BuildContext context) {
+    return Container(
+        alignment: FractionalOffset.center,
+        height: 40,
+        width: 150,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: ColorResource.COLOR_APP_BTN),
+        padding:
+        const EdgeInsets.only(top: 10, bottom: 10, left: 10, right: 10),
+        child: Text(
+          StringResource.ANSWERS.tr(),
+          style: CustomStyle.size14w500white(),
+        ));
+  }
 }

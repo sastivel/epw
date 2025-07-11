@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:EPW_mobile/utils/image_resource.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
@@ -124,8 +123,8 @@ class MaterialDetails {
       "english_mild_audio": ImageResource.ANGIO_MILD_AUDIO_ENG,
       "tamil_mild_doc": ImageResource.ANGIO_MILD_DOC_TAMIL,
       "english_mild_doc": ImageResource.ANGIO_MILD_DOC_ENG,
-      "tamil_click_audio": ImageResource.ALAGE_CLICK_AUDIO_TAMIL,
-      "english_click_audio": ImageResource.ALAGE_CLICK_AUDIO_ENG,
+      "tamil_click_audio": ImageResource.ANGIO_CLICK_AUDIO_TAMIL,
+      "english_click_audio": ImageResource.ANGIO_CLICK_AUDIO_ENG,
     },
     {
       "type":"FLOWCHART",

@@ -1,9 +1,7 @@
 import 'package:EPW_mobile/screens/exam/bloc/exam_bloc.dart';
 import 'package:EPW_mobile/screens/exam/widgets/exam_screen_widgets.dart';
-import 'package:EPW_mobile/screens/home/bloc/home_bloc.dart';
 import 'package:EPW_mobile/screens/questions/bloc/question_bloc.dart';
 import 'package:EPW_mobile/screens/questions/view/question_screen.dart';
-import 'package:EPW_mobile/screens/scorecard/view/scorecard_screen.dart';
 import 'package:EPW_mobile/utils/string_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,8 +10,6 @@ import '../../../utils/common_imports.dart';
 import '../../../utils/image_resource.dart';
 import '../../base/state/base_hook_consumer_widget.dart';
 import '../../questions/bloc/question_event.dart';
-import '../../scorecard/bloc/Scorecard_event.dart';
-import '../../scorecard/bloc/scorecard_bloc.dart';
 import '../bloc/exam_event.dart';
 import '../bloc/exam_state.dart';
 

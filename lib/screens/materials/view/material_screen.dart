@@ -90,9 +90,13 @@ class _MaterialScreenState extends State<MaterialScreen> {
               ),
               margin: const EdgeInsets.only(top:5,left: 5,right: 5, bottom: 30),
               padding: const EdgeInsets.all(5),
-              child: GifView.asset(
-                material['image'], // Load the GIF from asset
-                frameRate: 30,
+              child: Container(
+                width: 400,
+                child: GifView.asset(
+                  material['image'], // Load the GIF from asset
+                  frameRate: 30,
+                  fit: BoxFit.fill,
+                ),
               ),
             ),
             _buildMaterialNameOverlay(material['name']),

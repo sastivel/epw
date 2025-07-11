@@ -79,7 +79,7 @@ class AuthendicationRemoteDataSourceImpl
       final RegisterResponseModel registerResponseModel =
           RegisterResponseModel.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${response}');
-      if (registerResponseModel?.success == 0) {
+      if (registerResponseModel.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(registerResponseModel);
@@ -116,7 +116,7 @@ class AuthendicationRemoteDataSourceImpl
       final RegisterResponseModel registerResponseModel =
           RegisterResponseModel.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${registerResponseModel}');
-      if (registerResponseModel?.success == 0) {
+      if (registerResponseModel.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(registerResponseModel);
@@ -148,7 +148,7 @@ class AuthendicationRemoteDataSourceImpl
       final GetExamIdResponse getExamIdResponse =
           GetExamIdResponse.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${getExamIdResponse.toJson()}');
-      if (getExamIdResponse?.success == 0) {
+      if (getExamIdResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(getExamIdResponse);
@@ -171,7 +171,7 @@ class AuthendicationRemoteDataSourceImpl
       final GetQuestionResponse getQuestionResponse =
           GetQuestionResponse.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${getQuestionResponse.toJson()}');
-      if (getQuestionResponse?.success == 0) {
+      if (getQuestionResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(getQuestionResponse);
@@ -196,7 +196,7 @@ class AuthendicationRemoteDataSourceImpl
       final GetScroreCardResponse getScroreCardResponse =
           GetScroreCardResponse.fromJson(response.data as Map<String, dynamic>);
 
-      if (getScroreCardResponse?.success == 0) {
+      if (getScroreCardResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(getScroreCardResponse);
@@ -226,7 +226,7 @@ class AuthendicationRemoteDataSourceImpl
           AddAnswerResponse.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${body}');
       print('statusCode  login-> ${response.data}');
-      if (addAnswerResponse?.success == 0) {
+      if (addAnswerResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(addAnswerResponse);
@@ -257,7 +257,7 @@ class AuthendicationRemoteDataSourceImpl
           BaseAddAnswerResponse.fromJson(response.data as Map<String, dynamic>);
 
       print('statusCode  login-> ${response.data}');
-      if (addAnswerResponse?.success == 0) {
+      if (addAnswerResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(addAnswerResponse);
@@ -283,7 +283,7 @@ class AuthendicationRemoteDataSourceImpl
       final MatchQuestionResponse getQuestionResponse =
           MatchQuestionResponse.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${getQuestionResponse.toJson()}');
-      if (getQuestionResponse?.success == 0) {
+      if (getQuestionResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(getQuestionResponse);
@@ -304,7 +304,7 @@ class AuthendicationRemoteDataSourceImpl
       final StudentResponse studentResponse =
           StudentResponse.fromJson(response.data as Map<String, dynamic>);
       print('statusCode  login-> ${studentResponse.toJson()}');
-      if (studentResponse?.success == 0) {
+      if (studentResponse.success == 0) {
         return Left(InvalidUserFailure());
       } else {
         return Right(studentResponse);

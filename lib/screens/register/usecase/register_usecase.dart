@@ -1,4 +1,3 @@
-import 'package:EPW_mobile/api/interface/base/base_response.dart';
 
 import "package:dartz/dartz.dart";
 

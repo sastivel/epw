@@ -8,7 +8,7 @@ import '../../../utils/string_resource.dart';
 import '../bloc/home_event.dart';
 
 class MyHomeScreenWidgets {
-static Widget cardWithImage(BuildContext context,bool isLeft,String imageResorce,String text){
+static Widget cardWithImage(BuildContext context,bool isLeft,String imageResorce,String text,String type){
    return   Container(
                   margin: EdgeInsets.only( left: isLeft ? 5 : 0),
                  child:  Card(
@@ -18,12 +18,13 @@ static Widget cardWithImage(BuildContext context,bool isLeft,String imageResorce
   ),
                    child: Container(
                     padding: EdgeInsets.all(16),
-                    height: 160,width: 160,
+                    height: type == "TABLET" ? 240 : 160,width:  type == "TABLET" ? 240 :160,
                     child: Column(
                       children: [
-                        Image.asset(imageResorce,height: 90,width: 90,),
+                        Image.asset(imageResorce,height: type == "TABLET" ? 170 : 90,width:  type == "TABLET" ? 170 :90,),
+                        if(type != "TABLET")
                         SizedBox(height: 10,),
-                        Expanded(child: Text(text.tr(context: context),style: CustomStyle.size18w400CAPPTXTCOLOR(),))
+                        Expanded(child: Text(text.tr(context: context),style:type == "TABLET" ?  CustomStyle.size22w400CAPPTXTCOLOR() : CustomStyle.size18w400CAPPTXTCOLOR(),))
                       ],
                     )),
                  ),
@@ -45,7 +46,7 @@ static Widget languageSwitch(HomeScreenBloc bloc,BuildContext context){
   EasyLocalization.of(context)!.setLocale(context.supportedLocales[0]),
                },
              
-               bloc!.add(HomeScreenLanguageChangeEvent(bool)),
+               bloc.add(HomeScreenLanguageChangeEvent(bool)),
               
               }),
               const   SizedBox(width: 10),

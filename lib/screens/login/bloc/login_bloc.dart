@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 
 import '../../../api/interface/login/login_response.dart';
 import '../../../core/preference/app_preference.dart';
@@ -97,7 +96,7 @@ class LoginScreenBloc extends Bloc<LoginScreenEvent, LoginScreenState> {
         (l) => {emit(LoginScreenErrorState(l.toString()))},
         (r) => {
               print("***************loginResponseModel******"),
-              print(r!.student!.toJson()),
+              print(r.student!.toJson()),
               appPreferences.setUser(r),
               if (r.student != null && r.student?.id != null)
                 {emit(NavigateToHomeScreenState())}

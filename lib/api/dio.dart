@@ -82,7 +82,7 @@ class DioHelper {
       // If you want to reject the request with a error message,
       // you can reject a `DioError` object eg: `handler.reject(dioError)`
     }, onError: (DioError e, handler) {
-      if (e.type == DioErrorType.response) {
+      if (e.type == DioErrorType.badResponse) {
         switch (e.response!.statusCode) {
           case 401:
             break;
@@ -104,7 +104,7 @@ class DioHelper {
             break;
         }
       } else {
-        _showToast(e.message);
+        _showToast(e.message!);
       }
       // Do something with response error
       return handler.next(e); //continue

@@ -3,7 +3,7 @@
     <application
         android:label="Explore Plant World"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/logo_final">
         <activity
             android:name=".MainActivity"
             android:exported="true"

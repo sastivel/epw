@@ -1,4 +1,3 @@
-import 'package:EPW_mobile/screens/profile/bloc/profile_bloc.dart';
 import 'package:EPW_mobile/utils/color_resource.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../../custome_widgets/custom_style.dart';
@@ -9,12 +8,12 @@ import '../bloc/register_bloc.dart';
 import '../bloc/register_event.dart';
 
 class RegisterScreenWidgets {
-  static Widget nameTxtBox(BuildContext context, RegisterScreenBloc bloc) {
+  static Widget nameTxtBox(BuildContext context, RegisterScreenBloc bloc,String type) {
     return Container(
       // margin: const EdgeInsets.only(right: 20,left: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             StringResource.NAME.tr(),
@@ -37,7 +36,7 @@ class RegisterScreenWidgets {
     );
   }
 
-  static Widget classDropDown(BuildContext context, RegisterScreenBloc bloc) {
+  static Widget classDropDown(BuildContext context, RegisterScreenBloc bloc,String type) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -85,7 +84,7 @@ class RegisterScreenWidgets {
   }
 
   static Widget disablityDropDown(
-      BuildContext context, RegisterScreenBloc bloc) {
+      BuildContext context, RegisterScreenBloc bloc,String type) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -138,7 +137,7 @@ class RegisterScreenWidgets {
   }
 
   static Widget disablityStatusDropDown(
-      BuildContext context, RegisterScreenBloc bloc) {
+      BuildContext context, RegisterScreenBloc bloc,String type) {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -185,11 +184,11 @@ class RegisterScreenWidgets {
     );
   }
 
-  static Widget registerbtn(BuildContext context, RegisterScreenBloc bloc) {
+  static Widget registerbtn(BuildContext context, RegisterScreenBloc bloc,String type) {
     return Center(
       child: InkWell(
         onTap: () {
-          bloc!.add(RegisterScreenRegisterButtonClickEvent());
+          bloc.add(RegisterScreenRegisterButtonClickEvent());
           // Navigator.pushNamed(context, AppRoutes.homeScreen);
         },
         child: Container(

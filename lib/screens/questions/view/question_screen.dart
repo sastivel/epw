@@ -95,6 +95,7 @@ scorecardScreenBloc = useBloc<ScorecardScreenBloc>(closeOnDispose: false);
           onCancelExam();
         });
       }
+      return null;
     }, [appLifecycleState]);
 
     return WillPopScope(

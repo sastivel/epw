@@ -50,5 +50,11 @@
     "choose7": "சரியான பதிலைத் தேர்ந்தெடுக்கவும்: 10",
     "choose8": "ஒரு சொல்: 5",
     "choose9": "வெற்றிடங்களை நிரப்பவும்: 10",
-    "SELECTDISBLITYTYPE": "இயலாமை தேர்ந்தெடுக்கவும்"
+    "SELECTDISBLITYTYPE": "இயலாமை தேர்ந்தெடுக்கவும்",
+    "correct_answer_count":"சரியான பதில்களின் எண்ணிக்கை",
+    "correct_fillups": "சரியான நிரப்பல்",
+    "correct_choose_one_count": "சரியான தேர்வு எண்ணிக்கை",
+    "correct_one_word_count": "சரியான ஒரு வார்த்தை எண்ணிக்கை",
+    "correct_true_false_count": "சரியான உண்மை/தவறு எண்ணிக்கை",
+    "correct_match_count": "சரியான பொருத்தம் எண்ணிக்கை"
 }

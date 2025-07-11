@@ -8,7 +8,6 @@ import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/string_resource.dart';
 import '../bloc/question_event.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class QuestionWidgets {
   static Widget submitBtn(BuildContext context, QuestionsScreenBloc bloc) {
@@ -36,7 +35,7 @@ class QuestionWidgets {
     return InkWell(
       onTap: () {
         if (bloc.isLastQuestion == true) {
-          if(bloc.disAbilityType == 'Mild Intellectual Disability'){
+          if(bloc.disAbilityType == "3"){
             bloc.add(MoveToScoreCardEvent());
           }else {
             bloc.add(GetMatchQuestionEvent());
@@ -87,7 +86,7 @@ class QuestionWidgets {
           ),
 
           SizedBox(
-            height: MediaQuery.of(context).size.height / 3,
+            height: MediaQuery.of(context).size.height / 2.8,
             width: MediaQuery.of(context).size.height / 2,
             child: ListView.builder(
                 itemCount: bloc.currentOptions!.length,
@@ -150,6 +149,7 @@ class QuestionWidgets {
                   );
                 }),
           ),
+         // SizedBox(height: 20,),
           state is QuestionsScreenBtnLoadingState
               ? const Center(
                   child: CircularProgressIndicator(),
@@ -267,7 +267,7 @@ class QuestionWidgets {
                           ),
                           Expanded(
                             child: ListView.builder(
-                                itemCount: bloc.matchOptions!.length,
+                                itemCount: bloc.matchOptions.length,
                                 shrinkWrap: true,
                                 physics: const AlwaysScrollableScrollPhysics(),
                                 itemBuilder: (BuildContext context, int index) {
@@ -312,7 +312,7 @@ class QuestionWidgets {
                                 },
                                 children: [
                                   for (int index = 0;
-                                      index < bloc.matchQuestion!.length;
+                                      index < bloc.matchQuestion.length;
                                       index += 1)
                                     ListTile(
                                       key: Key('$index'),

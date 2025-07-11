@@ -263,4 +263,12 @@ class CustomStyle {
     );
   }
 
+  static TextStyle size22w400CAPPTXTCOLOR() {
+    return GoogleFonts.notoSans(
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+      color: ColorResource.COLOR_APP_TEXT,
+    );
+  }
+
 }
