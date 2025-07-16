@@ -14,5 +14,12 @@
 -keep class retrofit2.** { *; }
 -dontwarn retrofit2.**
 
+# Keep Google Play Core library classes
+-keep class com.google.android.play.** { *; }
+-dontwarn com.google.android.play.**
+
+# Keep Flutter deferred components
+-keep class io.flutter.embedding.engine.deferredcomponents.** { *; }
+
 # Prevent obfuscation of app entry point
 -keep class com.example.epw.MainActivity { *; }

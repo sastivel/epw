@@ -1,7 +1,6 @@
 import 'package:EPW_mobile/api/interface/login/login_response.dart';
 import 'package:EPW_mobile/screens/materials/view/pdf_view.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../core/preference/app_preference.dart';
 import '../../../custome_widgets/custom_style.dart';
@@ -9,7 +8,7 @@ import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/string_resource.dart';
 import 'audio_player.dart';
-
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 class MaterialDetailScreen extends StatefulWidget {
   final int? index;
   final dynamic info;
@@ -26,7 +25,7 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
   SharedPreferences? sharedPreferences;
   AppPreferences? appPreferences;
   LoginResponseModel? loginResponseModel;
-  PDFDocument? doc;
+  String? doc;
   bool isPlaying = false;
 
   @override
@@ -56,7 +55,7 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
         : (locale == "ta_IN" ? widget.info['tamil_pdf'] : widget.info['english_pdf']);
 
     // Load the PDF
-    doc = await PDFDocument.fromAsset(pdfPath);
+    doc = pdfPath;
     print("Loaded PDF: $pdfPath");
   }
 

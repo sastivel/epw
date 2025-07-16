@@ -9,7 +9,7 @@
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/analyzer-7.5.5",
+      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/analyzer-7.6.0",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     },
@@ -230,12 +230,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "easy_pdf_viewer",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/easy_pdf_viewer-1.0.8",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "equatable",
       "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/equatable-2.0.7",
       "packageUri": "lib/",
@@ -278,12 +272,6 @@
       "languageVersion": "2.14"
     },
     {
-      "name": "flutter_cache_manager",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/flutter_cache_manager-3.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "flutter_hooks",
       "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/flutter_hooks-0.20.5",
       "packageUri": "lib/",
@@ -300,6 +288,12 @@
       "rootUri": "file:///Users/sastismac/Documents/development/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
       "languageVersion": "3.7"
+    },
+    {
+      "name": "flutter_pdfview",
+      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/flutter_pdfview-1.4.1+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.17"
     },
     {
       "name": "flutter_svg",
@@ -396,12 +390,6 @@
       "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/image-4.5.4",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-    },
-    {
-      "name": "infinite_listview",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/infinite_listview-1.1.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "intl",
@@ -514,12 +502,6 @@
     {
       "name": "nested",
       "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/nested-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "numberpicker",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/numberpicker-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -663,7 +645,7 @@
     },
     {
       "name": "rxdart",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/rxdart-0.27.7",
+      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/rxdart-0.28.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -752,34 +734,10 @@
       "languageVersion": "3.1"
     },
     {
-      "name": "sqflite",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sqflite-2.4.2",
+      "name": "sprintf",
+      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sprintf-7.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "sqflite_android",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sqflite_android-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "sqflite_common",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sqflite_common-2.5.5",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "sqflite_darwin",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sqflite_darwin-2.4.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "sqflite_platform_interface",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/sqflite_platform_interface-2.4.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "2.12"
     },
     {
       "name": "stack_trace",
@@ -837,9 +795,9 @@
     },
     {
       "name": "uuid",
-      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/uuid-3.0.7",
+      "rootUri": "file:///Users/sastismac/.pub-cache/hosted/pub.dev/uuid-4.5.1",
       "packageUri": "lib/",
-      "languageVersion": "2.12"
+      "languageVersion": "3.0"
     },
     {
       "name": "vector_graphics",

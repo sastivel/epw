@@ -56,8 +56,6 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   awesome_dialog: ^3.0.2
-
-  easy_pdf_viewer: ^1.0.7
   easy_localization: ^3.0.2
   flutter_svg: ^2.0.8
   just_audio: ^0.10.4
@@ -67,6 +65,7 @@ dependencies:
   change_app_package_name: ^1.4.0
   flutter_launcher_icons: ^0.14.2
   responsive_builder: ^0.7.1
+  flutter_pdfview: ^1.4.1+1
 
 dev_dependencies:
   flutter_test:

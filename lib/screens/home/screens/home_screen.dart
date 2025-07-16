@@ -53,22 +53,25 @@ class HomeScreen extends BaseHookWidget {
                   alignment: Alignment.topCenter,
                 ),
               ),
-              child:ScreenTypeLayout.builder(
-                mobile: (BuildContext context) =>  bodyWidget(state, context,"MOBILE"),
-                tablet: (BuildContext context) =>  bodyWidget(state, context,"TABLET"),
-                desktop: (BuildContext context) =>  bodyWidget(state, context,"DESKTOP"),
-                watch:  (BuildContext context) => bodyWidget(state, context,"WATCH"),
+              child: ScreenTypeLayout.builder(
+                mobile: (BuildContext context) =>
+                    bodyWidget(state, context, "MOBILE"),
+                tablet: (BuildContext context) =>
+                    bodyWidget(state, context, "TABLET"),
+                desktop: (BuildContext context) =>
+                    bodyWidget(state, context, "DESKTOP"),
+                watch: (BuildContext context) =>
+                    bodyWidget(state, context, "WATCH"),
               ),
-
             )));
   }
 
-  bodyWidget(state,BuildContext context,String type) {
+  bodyWidget(state, BuildContext context, String type) {
     return state is HomeScreenLoadingState
         ? Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Center(child: CircularProgressIndicator()))
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Center(child: CircularProgressIndicator()))
         : Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +80,9 @@ class HomeScreen extends BaseHookWidget {
                 height: 30,
               ),
               Container(
-                margin: EdgeInsets.only(right: 10,),
+                margin: EdgeInsets.only(
+                  right: 10,
+                ),
                 child: Align(
                   alignment: AlignmentDirectional.topEnd,
                   child: InkWell(
@@ -133,12 +138,12 @@ class HomeScreen extends BaseHookWidget {
                   ),
                 ],
               ),
-               SizedBox(
-                height: type == "TABLET" ? 60:0 ,
+              SizedBox(
+                height: type == "TABLET" ? 10 : 0,
               ),
               MyHomeScreenWidgets.languageSwitch(homeScreenBloc!, context),
-               SizedBox(
-                height: type == "TABLET" ? 90:0 ,
+              SizedBox(
+                height: type == "TABLET" ? 30 : 0,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,8 +155,12 @@ class HomeScreen extends BaseHookWidget {
                         onTap: () {
                           pushNamed(context, ProfileScreen());
                         },
-                        child: MyHomeScreenWidgets.cardWithImage(context, true,
-                            ImageResource.PROFILE, StringResource.PROFILE,type),
+                        child: MyHomeScreenWidgets.cardWithImage(
+                            context,
+                            true,
+                            ImageResource.PROFILE,
+                            StringResource.PROFILE,
+                            type),
                       ),
                       InkWell(
                         onTap: () {
@@ -160,8 +169,12 @@ class HomeScreen extends BaseHookWidget {
                               MaterialPageRoute(
                                   builder: (context) => MaterialScreen()));
                         },
-                        child: MyHomeScreenWidgets.cardWithImage(context, true,
-                            ImageResource.STUDYMAT, StringResource.STUDYMAT,type),
+                        child: MyHomeScreenWidgets.cardWithImage(
+                            context,
+                            true,
+                            ImageResource.STUDYMAT,
+                            StringResource.STUDYMAT,
+                            type),
                       )
                     ],
                   ),
@@ -173,7 +186,7 @@ class HomeScreen extends BaseHookWidget {
                               builder: (context) => ExploreScreen()));
                     },
                     child: MyHomeScreenWidgets.cardWithImage(context, false,
-                        ImageResource.QUIZ, StringResource.QUIZ,type),
+                        ImageResource.QUIZ, StringResource.QUIZ, type),
                   )
                 ],
               )

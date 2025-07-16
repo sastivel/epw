@@ -1,10 +1,12 @@
+import 'dart:async';
+
 import 'package:EPW_mobile/screens/materials/view/video_player.dart';
-import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:video_player/video_player.dart';
 
 class PDFViewerScreen extends StatefulWidget {
-  PDFDocument? doc;
+  String? doc;
   String? videoUrl;
   bool? canShowVideo;
 
@@ -18,6 +20,12 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
   late VideoPlayerController _videoController;
   bool _isVideoInitialized = false;
   String pdfPath = 'assets/sample.pdf'; // Replace with your PDF path
+  int? pages = 0;
+  int? currentPage = 0;
+  bool isReady = false;
+  String errorMessage = '';
+  final Completer<PDFViewController> _controller =
+  Completer<PDFViewController>();
 
   @override
   void initState() {
@@ -52,12 +60,33 @@ class _PDFViewerScreenState extends State<PDFViewerScreen> {
             SizedBox(
               width: MediaQuery.of(context).size.width,
               height:widget.canShowVideo == true && widget.videoUrl != null && widget.videoUrl != "" ?  MediaQuery.of(context).size.height/1.65 :MediaQuery.of(context).size.height ,
-              child: PDFViewer(
-                document: widget.doc!,
-                scrollDirection: Axis.vertical,
-                showNavigation: false,
-                showPicker: true,
+              child: PDFView(
+                filePath: pdfPath,
+                enableSwipe: true,
+                swipeHorizontal: true,
+                autoSpacing: false,
+                pageFling: false,
+                backgroundColor: Colors.grey,
+                onRender: (_pages) {
+                  setState(() {
+                    pages = _pages;
+                    isReady = true;
+                  });
+                },
+                onError: (error) {
+                  print(error.toString());
+                },
+                onPageError: (page, error) {
+                  print('$page: ${error.toString()}');
+                },
+                onViewCreated: (PDFViewController pdfViewController) {
+                  _controller.complete(pdfViewController);
+                },
+                // onPageChanged: (int page, int total) {
+                //   print('page change: $page/$total');
+                // },
               ),
+
             ),
             SizedBox(height: 20),
             if(widget.canShowVideo == true && widget.videoUrl != null && widget.videoUrl != "")

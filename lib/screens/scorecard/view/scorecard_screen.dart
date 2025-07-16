@@ -20,141 +20,144 @@ class ScoreCardScreen extends BaseHookWidget {
   @override
   Widget build(BuildContext context) {
     scorecardScreenBloc = useBloc<ScorecardScreenBloc>(closeOnDispose: false);
+    final state = useBlocBuilder(scorecardScreenBloc!);
 
-    final state = useBlocBuilder(
-      scorecardScreenBloc!,
-    );
-    ValueNotifier<String> audioLock = ValueNotifier('');
-    // AudioContainer(
-    //   url: "assets/images/winner_click.mp3",
-    //   audioLock: audioLock,
-    //   canAutoPlay: true,
-    // );
     final AudioPlayer _player = AudioPlayer();
     _player.setLoopMode(LoopMode.off);
     _player.setAsset("assets/images/winner_click.mp3");
-    //_player.setUrl();
     _player.play();
 
+    final screenSize = MediaQuery.of(context).size;
+    final isTablet = screenSize.shortestSide >= 600; // Basic tablet check
+
     return SafeArea(
-        child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: ExactAssetImage(ImageResource.APPBG4),
-                  fit: BoxFit.fill,
-                  alignment: Alignment.topCenter,
-                ),
-              ),
-              child: state is ScorecardScreenLoadingState
-                  ? const Center(
-                      child: CircularProgressIndicator(),
-                    )
-                  : Stack(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: ExactAssetImage(ImageResource.APPBG4),
+              fit: BoxFit.fill,
+              alignment: Alignment.topCenter,
+            ),
+          ),
+          child: state is ScorecardScreenLoadingState
+              ? const Center(child: CircularProgressIndicator())
+              : LayoutBuilder(
+                  builder: (context, constraints) {
+                    double imageHeight = isTablet
+                        ? screenSize.height * 0.6
+                        : screenSize.height * 0.5;
+                    double buttonSpacing = isTablet ? 40 : 20;
+                    double scoreTopMargin = isTablet
+                        ? screenSize.height * 0.30
+                        : screenSize.height * 0.3;
+                    double fontSize = isTablet ? 28 : 24;
+
+                    return Stack(
                       children: [
                         Center(
-                          child: Container(
-                            height: MediaQuery.of(context).size.height / 1.5,
-                            width: MediaQuery.of(context).size.width,
+                          child: SizedBox(
+                            height: imageHeight,
+                            width: screenSize.width * 0.9,
                             child: SvgPicture.asset(
                               ImageResource.IMAGE_SCORE_CARD,
-                              fit: BoxFit.cover,
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),
                         Positioned(
-                          bottom: MediaQuery.of(context).size.width / 2,
-                          left: MediaQuery.of(context).size.width / 3,
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                _player.dispose();
-                                pushReplacement(context, HomeScreen());
-                              },
-                              child: ScoreCardWidgets.homeBtn(context),
-                            ),
+                          bottom: screenSize.height * 0.2,
+                          left: screenSize.width * 0.25,
+                          right: screenSize.width * 0.25,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  _player.dispose();
+                                  pushReplacement(context, HomeScreen());
+                                },
+                                child: ScoreCardWidgets.homeBtn(context),
+                              ),
+                              SizedBox(height: buttonSpacing),
+                              InkWell(
+                                onTap: () {
+                                  showPopup(
+                                      context,
+                                      scorecardScreenBloc?.scorecard,
+                                      scorecardScreenBloc!);
+                                },
+                                child: ScoreCardWidgets.detailBtn(context),
+                              ),
+                            ],
                           ),
                         ),
                         Positioned(
-                          bottom: MediaQuery.of(context).size.width / 2.8,
-                          left: MediaQuery.of(context).size.width / 3,
-                          child: Center(
-                            child: InkWell(
-                              onTap: () {
-                                showPopup(context, scorecardScreenBloc?.scorecard,scorecardScreenBloc!);
-                              },
-                              child: ScoreCardWidgets.detailBtn(context),
+                          top: scoreTopMargin,
+                          left: 20,
+                          child: Text(
+                            '${scorecardScreenBloc?.answerCount}/${scorecardScreenBloc?.diaAbilityType == 'Mild Intellectual Disability' ? 25 : 60}',
+                            style: TextStyle(
+                              fontSize: fontSize,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        Center(
-                          child: Container(
-                              margin: EdgeInsets.only(
-                                  top: MediaQuery.of(context).size.width / 3.4,
-                                  left: 20,
-                                  bottom: 10),
-                              child: scorecardScreenBloc?.diaAbilityType != null && scorecardScreenBloc?.diaAbilityType == 'Mild Intellectual Disability' ? Text(
-                                '${scorecardScreenBloc?.answerCount}/25',
-                                style: const TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ) : Text(
-                                '${scorecardScreenBloc?.answerCount}/60',
-                                style: const TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              )),
-                        ),
-
-                        //   ),
-                        //  Container(
-                        //   height: 100,
-                        //   width: 100,
-                        //   margin:  EdgeInsets.only(top: 0,left: MediaQuery.of(context).size.width/5,right:  MediaQuery.of(context).size.width/5,bottom: MediaQuery.of(context).size.width/5),
-                        //   child: Image.asset(ImageResource.EXPLORE_IMAGE,
-
-                        //   ),
-                        // ),
                       ],
-                    ),
-            )));
+                    );
+                  },
+                ),
+        ),
+      ),
+    );
   }
 
-  void showPopup(BuildContext context, Scorecard? scorecard,ScorecardScreenBloc bloc) {
+  void showPopup(
+      BuildContext context, Scorecard? scorecard, ScorecardScreenBloc bloc) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title:  Text(StringResource.correctAnswerCount.tr(),style: TextStyle(fontWeight: FontWeight.bold),),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-           ListTile(title: Text(StringResource.correctAnswerCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
-            trailing: Text(scorecard!.correctAnswerCount.toString()),
-         ),
-              ListTile(title: Text(StringResource.correctFillups.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
-                trailing: Text(scorecard.fillUpCount.toString()),
-              ),
-              ListTile(title: Text(StringResource.correctChooseOneCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
-                trailing: Text(scorecard.chooseOneCount.toString()),
-              ),
-              ListTile(title: Text(StringResource.correctOneWordCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
-                trailing: Text(scorecard.oneWordCount.toString()),
-              ),
-              ListTile(title: Text(StringResource.correctTrueFalseCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
-                trailing: Text(scorecard.trueFalseCount.toString()),
-              ),
-              if(bloc.diaAbilityType != "3")
-              ListTile(title: Text(StringResource.correctMatchCount.tr(),style: TextStyle(fontWeight: FontWeight.bold)),
+          title: Text(
+            StringResource.correctAnswerCount.tr(),
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          content: Column(mainAxisSize: MainAxisSize.min, children: [
+            ListTile(
+              title: Text(StringResource.correctAnswerCount.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(scorecard!.correctAnswerCount.toString()),
+            ),
+            ListTile(
+              title: Text(StringResource.correctFillups.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(scorecard.fillUpCount.toString()),
+            ),
+            ListTile(
+              title: Text(StringResource.correctChooseOneCount.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(scorecard.chooseOneCount.toString()),
+            ),
+            ListTile(
+              title: Text(StringResource.correctOneWordCount.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(scorecard.oneWordCount.toString()),
+            ),
+            ListTile(
+              title: Text(StringResource.correctTrueFalseCount.tr(),
+                  style: TextStyle(fontWeight: FontWeight.bold)),
+              trailing: Text(scorecard.trueFalseCount.toString()),
+            ),
+            if (bloc.diaAbilityType != "3")
+              ListTile(
+                title: Text(StringResource.correctMatchCount.tr(),
+                    style: TextStyle(fontWeight: FontWeight.bold)),
                 trailing: Text(scorecard.matchFollowingCount.toString()),
               ),
-            ]
-          ),
+          ]),
           actions: [
             TextButton(
               onPressed: () {
