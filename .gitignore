@@ -78,6 +78,4 @@ android/app/google-services.json
 *.lock
 *.bak
 
-# LFS tracked files (optional - helps prevent large binaries being committed directly)
-*.apk filter=lfs diff=lfs merge=lfs -text
-*.ipa filter=lfs diff=lfs merge=lfs -text
+
