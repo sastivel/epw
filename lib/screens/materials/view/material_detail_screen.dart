@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:EPW_mobile/api/interface/login/login_response.dart';
 import 'package:EPW_mobile/screens/materials/view/pdf_view.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -8,7 +10,8 @@ import '../../../utils/color_resource.dart';
 import '../../../utils/common_imports.dart';
 import '../../../utils/string_resource.dart';
 import 'audio_player.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 class MaterialDetailScreen extends StatefulWidget {
   final int? index;
   final dynamic info;
@@ -35,6 +38,25 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
     _initializeData();
   }
 
+  Future<File> fromAsset(String asset, String filename) async {
+    // To open from assets, you can copy them to the app storage folder, and the access them "locally"
+    Completer<File> completer = Completer();
+
+    try {
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/$filename");
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      await file.writeAsBytes(bytes, flush: true);
+      completer.complete(file);
+    } catch (e) {
+      throw Exception('Error parsing asset file!');
+    }
+
+    return completer.future;
+  }
+
+
   Future<void> _initializeData() async {
     sharedPreferences = await SharedPreferences.getInstance();
     appPreferences = AppPreferences(sharedPreferences!);
@@ -53,9 +75,14 @@ class _MaterialDetailScreenState extends State<MaterialDetailScreen> {
     final pdfPath = (disabilityType == "3" && widget.info['type'] != "FLOWCHART")
         ? (locale == "ta_IN" ? widget.info['tamil_mild_doc'] : widget.info['english_mild_doc'])
         : (locale == "ta_IN" ? widget.info['tamil_pdf'] : widget.info['english_pdf']);
-
+    String fileName = p.basename(pdfPath);
     // Load the PDF
     doc = pdfPath;
+    // fromAsset(pdfPath, fileName).then((f) {
+    //   setState(() {
+    //     doc = f.path;
+    //   });
+    // });
     print("Loaded PDF: $pdfPath");
   }
 

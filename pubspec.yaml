@@ -66,6 +66,7 @@ dependencies:
   flutter_launcher_icons: ^0.14.2
   responsive_builder: ^0.7.1
   flutter_pdfview: ^1.4.1+1
+  syncfusion_flutter_pdfviewer: ^28.2.7
 
 dev_dependencies:
   flutter_test:

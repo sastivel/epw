@@ -31,7 +31,6 @@ class _MaterialScreenState extends State<MaterialScreen> {
 
   Future<void> _playSound(audio) async {
     try {
-      await _player.setAsset(audio);
       _player.play();
     } catch (e) {
       print("Error loading audio: $e");
